@@ -90,23 +90,25 @@ const sampleActivities = [
 ];
 
 const sampleGallery = [
-  {
-    id: 1,
-    type: 'activity',
-    time: 'recent',
-    src: 'images/hero-bg.jpg',
-    title_ar: 'نشاط كرة القدم',
-    title_en: 'Football Activity'
-  },
-  {
-    id: 2,
-    type: 'trip',
-    time: 'old',
-    src: 'images/hero-bg.jpg',
-    title_ar: 'رحلة إلى المتحف',
-    title_en: 'Museum Trip'
-  }
-];
+      {
+        id: 1,
+        type: 'activity',
+        time: 'recent',
+        src: 'images/hero-bg.jpg',
+        title_ar: 'نشاط كرة القدم',
+        title_en: 'Football Activity',
+        images: ['images/hero-bg.jpg', 'images/hero-bg.jpg', 'images/hero-bg.jpg']
+      },
+      {
+        id: 2,
+        type: 'trip',
+        time: 'old',
+        src: 'images/hero-bg.jpg',
+        title_ar: 'رحلة إلى المتحف',
+        title_en: 'Museum Trip',
+        images: ['images/hero-bg.jpg', 'images/hero-bg.jpg']
+      }
+    ];
 
 // Initialization on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -165,17 +167,33 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderStats(container) {
   container.innerHTML = '';
   const stats = [
-    { label_ar: 'المشتركين', label_en: 'Subscribers', value: 120 },
-    { label_ar: 'الأنشطة', label_en: 'Activities', value: 8 },
-    { label_ar: 'الرحلات', label_en: 'Trips', value: 3 }
+    {
+      label_ar: 'المشتركين',
+      label_en: 'Subscribers',
+      value: 120,
+      icon: '👥'
+    },
+    {
+      label_ar: 'الأنشطة',
+      label_en: 'Activities',
+      value: 8,
+      icon: '🏀'
+    },
+    {
+      label_ar: 'الرحلات',
+      label_en: 'Trips',
+      value: 3,
+      icon: '🚌'
+    }
   ];
   stats.forEach((stat) => {
     const col = document.createElement('div');
     col.className = 'col-md-4 mb-3';
     col.innerHTML = `
-      <div class="card">
-        <h4>${stat.value}</h4>
-        <p>${document.documentElement.lang === 'ar' ? stat.label_ar : stat.label_en}</p>
+      <div class="card stats-card d-flex flex-column align-items-center p-4">
+        <div class="stat-icon mb-2" style="font-size: 2rem;">\${stat.icon}</div>
+        <h4 class="mb-1">\${stat.value}</h4>
+        <p class="mb-0">\${document.documentElement.lang === 'ar' ? stat.label_ar : stat.label_en}</p>
       </div>
     `;
     container.appendChild(col);
@@ -184,23 +202,38 @@ function renderStats(container) {
 
 // Render carousel-like cards on home page for a given type
 function renderActivities(container, type) {
+  // container here refers to the carousel-inner element
   container.innerHTML = '';
   const filtered = sampleActivities.filter((act) => act.type === type);
-  filtered.forEach((act) => {
-    const col = document.createElement('div');
-    col.className = 'col-md-4';
-    col.innerHTML = `
-      <div class="card-activity">
-        <img src="${act.image}" alt="${act.title_ar}" />
-        <div class="card-body">
-          <h5 class="card-title">${document.documentElement.lang === 'ar' ? act.title_ar : act.title_en}</h5>
-          <p class="card-text">${document.documentElement.lang === 'ar' ? act.description_ar : act.description_en}</p>
-          <button class="btn btn-outline-primary btn-sm" onclick="showDetails(${act.id})">${document.documentElement.lang === 'ar' ? 'التفاصيل' : 'Details'}</button>
-          <button class="btn btn-primary btn-sm" onclick="openRegistration(${act.id})">${document.documentElement.lang === 'ar' ? 'تسجيل' : 'Register'}</button>
+  // Group items into slides of 3
+  const slides = [];
+  for (let i = 0; i < filtered.length; i += 3) {
+    slides.push(filtered.slice(i, i + 3));
+  }
+  slides.forEach((slideItems, index) => {
+    const slideDiv = document.createElement('div');
+    slideDiv.className = 'carousel-item' + (index === 0 ? ' active' : '');
+    let rowHtml = '<div class="row g-4 justify-content-center">';
+    slideItems.forEach((act) => {
+      rowHtml += `
+        <div class="col-md-4">
+          <div class="card-activity h-100 d-flex flex-column">
+            <img src="${act.image}" alt="${act.title_ar}" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${document.documentElement.lang === 'ar' ? act.title_ar : act.title_en}</h5>
+              <p class="card-text flex-grow-1">${document.documentElement.lang === 'ar' ? act.description_ar : act.description_en}</p>
+              <div class="mt-auto">
+                <button class="btn btn-outline-primary btn-sm me-2" onclick="showDetails(${act.id})">${document.documentElement.lang === 'ar' ? 'التفاصيل' : 'Details'}</button>
+                <button class="btn btn-primary btn-sm" onclick="openRegistration(${act.id})">${document.documentElement.lang === 'ar' ? 'تسجيل' : 'Register'}</button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    `;
-    container.appendChild(col);
+      `;
+    });
+    rowHtml += '</div>';
+    slideDiv.innerHTML = rowHtml;
+    container.appendChild(slideDiv);
   });
 }
 
@@ -300,16 +333,21 @@ function displaySearchResults(results) {
 function renderGallery() {
   const grid = document.getElementById('gallery-grid');
   grid.innerHTML = '';
-  sampleGallery.forEach((img) => {
+  sampleGallery.forEach((album) => {
     const col = document.createElement('div');
     col.className = 'col-md-4';
-    col.dataset.type = img.type;
-    col.dataset.time = img.time;
+    col.dataset.type = album.type;
+    col.dataset.time = album.time;
+    const title = document.documentElement.lang === 'ar' ? album.title_ar : album.title_en;
+    const typeLabel = document.documentElement.lang === 'ar'
+      ? (album.type === 'activity' ? 'نشاط' : 'رحلة')
+      : (album.type === 'activity' ? 'Activity' : 'Trip');
     col.innerHTML = `
-      <div class="card">
-        <img src="${img.src}" alt="${document.documentElement.lang === 'ar' ? img.title_ar : img.title_en}" />
-        <div class="card-body">
-          <h6 class="card-title">${document.documentElement.lang === 'ar' ? img.title_ar : img.title_en}</h6>
+      <div class="card gallery-card h-100" onclick="openGalleryAlbum(${album.id})" style="cursor:pointer;">
+        <img src="${album.src}" alt="${title}" class="card-img-top" />
+        <div class="card-body text-center">
+          <h6 class="card-title mb-1">${title}</h6>
+          <small class="text-muted">${typeLabel}</small>
         </div>
       </div>
     `;
@@ -330,6 +368,40 @@ function filterGallery() {
     const matchesTime = timeVal === 'all' || col.dataset.time === timeVal;
     col.style.display = matchesType && matchesTime ? '' : 'none';
   });
+}
+
+// Open a gallery album in a modal carousel
+function openGalleryAlbum(id) {
+  const album = sampleGallery.find((g) => g.id === id);
+  if (!album) return;
+  const body = document.getElementById('gallery-album-body');
+  if (!body) return;
+  // Build carousel HTML for the album
+  const carouselId = `albumCarousel${id}`;
+  let inner = '';
+  album.images.forEach((imgSrc, idx) => {
+    inner += `<div class="carousel-item${idx === 0 ? ' active' : ''}">
+      <img src="${imgSrc}" class="d-block w-100" alt="slide${idx}" />
+    </div>`;
+  });
+  body.innerHTML = `
+    <div id="${carouselId}" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        ${inner}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">${document.documentElement.lang === 'ar' ? 'السابق' : 'Previous'}</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">${document.documentElement.lang === 'ar' ? 'التالى' : 'Next'}</span>
+      </button>
+    </div>
+  `;
+  // Show modal
+  const modal = new bootstrap.Modal(document.getElementById('galleryAlbumModal'));
+  modal.show();
 }
 
 // Render hero slides from admin-controlled slides array (localStorage)

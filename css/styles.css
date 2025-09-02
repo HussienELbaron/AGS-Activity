@@ -24,41 +24,90 @@ body {
 }
 
 /* Header */
-.header {
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-  padding: 0.5rem 1rem;
-  position: sticky;
-  top: 0;
-  z-index: 1020;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-.header .brand img {
-  height: 50px;
-}
-.header-actions .btn {
-  font-size: 0.9rem;
-}
+    .header {
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 0.5rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      /* Center the brand and use absolute positioning for menu and action buttons */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .header .brand {
+      flex-grow: 1;
+      text-align: center;
+    }
+    .header .brand img {
+      height: 80px; /* enlarged logo */
+    }
+    /* Position the sidebar toggle button */
+    .header .menu-toggle {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      cursor: pointer;
+    }
+    /* In RTL languages the toggle sits on the right */
+    html[dir='rtl'] .header .menu-toggle {
+      right: 1rem;
+    }
+    /* In LTR languages the toggle sits on the left */
+    html[dir='ltr'] .header .menu-toggle {
+      left: 1rem;
+    }
+    /* Position the action buttons (login, language, admin) */
+    .header .header-actions {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 0.5rem;
+    }
+    html[dir='rtl'] .header .header-actions {
+      left: 1rem;
+    }
+    html[dir='ltr'] .header .header-actions {
+      right: 1rem;
+    }
+    .header .header-actions .btn {
+      font-size: 0.9rem;
+    }
 
 /* Sidebar */
-.sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 240px;
-  background-color: #fff;
-  border-left: 1px solid #eee;
-  overflow-y: auto;
-  padding-top: 80px;
-  transform: translateX(100%);
-  transition: transform var(--transition-speed) ease;
-  z-index: 1040;
-}
-html[dir='ltr'] .sidebar {
-  border-right: 1px solid #eee;
-  border-left: none;
-  transform: translateX(-100%);
-}
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 240px;
+      background-color: #fff;
+      overflow-y: auto;
+      padding-top: 80px;
+      transform: translateX(100%);
+      transition: transform var(--transition-speed) ease;
+      z-index: 1040;
+      /* Rounded corners and shadow for a softer appearance when open */
+      border-top-left-radius: 16px;
+      border-bottom-left-radius: 16px;
+      box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+    }
+    html[dir='ltr'] .sidebar {
+      transform: translateX(-100%);
+      /* Mirror the rounded corners and shadow on LTR */
+      border-top-right-radius: 16px;
+      border-bottom-right-radius: 16px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+    }
 .sidebar.open {
   transform: translateX(0);
 }
@@ -139,6 +188,23 @@ html[dir='ltr'] .sidebar {
   color: #666;
 }
 
+    /* Modern stats card styling */
+    .stats-card {
+      background-color: #fff;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .stats-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+    }
+    .stat-icon {
+      font-size: 2.5rem;
+      color: var(--secondary-color);
+    }
+
 /* Section headings */
 .events-section h3,
 .carousel-section h3,
@@ -211,6 +277,23 @@ html[dir='ltr'] .sidebar {
   display: none;
   z-index: 1050;
 }
+
+    /* Modal styling */
+    .modal-content {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .modal-header {
+      background-color: var(--primary-color);
+      color: #fff;
+      border-bottom: none;
+    }
+    .modal-header .btn-close {
+      filter: invert(1);
+    }
+    .modal-body {
+      background-color: #fff;
+    }
 .chatbot-header {
   background-color: var(--primary-color);
   color: #fff;
