@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!--
+  Main homepage (English) for the AGS Activities platform.
+  This page mirrors the Arabic version but uses left-to-right direction and English text.
+  Dynamic sections are populated via main.js based on stored data in localStorage.
+-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AGS International Schools - Activities</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index-en.html"
+          ><img src="images/logo.png" alt="School logo"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#activities">Activities</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#calendar">Calendar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="admin/login.html">Admin Panel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">العربية</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Advanced Generations International Schools</h1>
+        <p class="hero-subtitle">Activities and Events Platform</p>
+        <button class="btn-cta" onclick="scrollToSection('registration')">
+          Register Now
+        </button>
+      </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities" class="section-padding">
+      <div class="container">
+        <h2 class="text-center mb-4">Activities</h2>
+        <div class="activities-container" id="activities-container">
+          <!-- Activities loaded via main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="registration" class="section-padding registration-section">
+      <div class="container">
+        <h2 class="text-center mb-4">Activity Registration</h2>
+        <form id="registration-form" class="registration-form">
+          <div class="mb-3">
+            <label for="studentNameEn" class="form-label">Student Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="studentNameEn"
+              placeholder="Enter student's name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="gradeEn" class="form-label">Grade</label>
+            <select class="form-select" id="gradeEn" required>
+              <option value="" disabled selected>Select a grade</option>
+              <option>Grade 1</option>
+              <option>Grade 2</option>
+              <option>Grade 3</option>
+              <option>Grade 4</option>
+              <option>Grade 5</option>
+              <option>Grade 6</option>
+              <option>Grade 7</option>
+              <option>Grade 8</option>
+              <option>Grade 9</option>
+              <option>Grade 10</option>
+              <option>Grade 11</option>
+              <option>Grade 12</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="parentNameEn" class="form-label">Parent Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="parentNameEn"
+              placeholder="Enter parent's name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="phoneEn" class="form-label">Phone Number</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="phoneEn"
+              placeholder="05XXXXXXXX"
+              pattern="05[0-9]{8}"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="subscriptionEn" class="form-label">Subscription Type</label>
+            <select class="form-select" id="subscriptionEn" required>
+              <option value="" disabled selected>Select subscription type</option>
+              <option value="free">Free</option>
+              <option value="monthly">Monthly</option>
+              <option value="quarterly">Quarterly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="amountEn" class="form-label">Total Amount (SAR)</label>
+            <input
+              type="number"
+              class="form-control"
+              id="amountEn"
+              placeholder="Enter amount"
+              min="0"
+              step="0.01"
+              required
+            />
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Register Now</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section-padding">
+      <div class="container">
+        <h2 class="text-center mb-4">Gallery</h2>
+        <div class="gallery-container" id="gallery-container">
+          <!-- Images loaded via main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section id="calendar" class="section-padding">
+      <div class="container">
+        <h2 class="text-center mb-4">Calendar</h2>
+        <p class="text-center">Event calendar coming soon.</p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding">
+      <div class="container">
+        <h2 class="text-center mb-4">Contact Us</h2>
+        <form id="contact-form" class="registration-form">
+          <div class="mb-3">
+            <label for="contactNameEn" class="form-label">Name</label>
+            <input type="text" class="form-control" id="contactNameEn" required />
+          </div>
+          <div class="mb-3">
+            <label for="contactEmailEn" class="form-label">Email</label>
+            <input type="email" class="form-control" id="contactEmailEn" required />
+          </div>
+          <div class="mb-3">
+            <label for="contactMessageEn" class="form-label">Your Message</label>
+            <textarea
+              class="form-control"
+              id="contactMessageEn"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Send</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Chatbot toggle button and container -->
+    <button id="chatbot-toggle" class="btn btn-secondary" onclick="toggleChatbot()">
+      💬
+    </button>
+    <div id="chatbot-container" style="display: none">
+      <div id="chatbot-header" class="d-flex justify-content-between align-items-center px-3 py-2" style="background-color: var(--primary-color); color: #fff;">
+        <span>AGS Assistant</span>
+        <button class="btn btn-light btn-sm" onclick="toggleChatbot()">✕</button>
+      </div>
+      <div id="chatbot-messages" style="padding: 10px; max-height: 300px; overflow-y: auto"></div>
+      <div id="chatbot-input" class="d-flex">
+        <input
+          type="text"
+          id="chatbot-user-input"
+          class="form-control"
+          placeholder="Type your message here..."
+        />
+        <button class="btn btn-secondary" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>All rights reserved &copy; Advanced Generations International Schools 2025</p>
+        <p>
+          <a href="#">Privacy Policy</a> |
+          <a href="#">Terms &amp; Conditions</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    ></script>
+  </body>
+</html>

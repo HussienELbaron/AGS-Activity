@@ -1,0 +1,299 @@
+/*
+ * Global styles for the professional AGS Activities platform.
+ * Designed to deliver a polished, modern experience with clear sections,
+ * responsive layouts, and colors inspired by the school logo.
+ */
+
+/* Import Google Cairo font to support Arabic and English text elegantly */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+/* CSS Variables for colors */
+:root {
+  --primary-color: #122867; /* deep blue */
+  --secondary-color: #F4B000; /* golden yellow */
+  --accent-color: #e9ecef;   /* light grey */
+  --text-dark: #0D1B2A;      /* dark navy */
+  --text-light: #6c757d;     /* muted grey */
+}
+
+/* Base reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Cairo', sans-serif;
+  background-color: #fdfdfd;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* Navbar styling */
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e6e6e6;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+.navbar-brand img {
+  max-height: 50px;
+}
+
+.navbar-nav .nav-link {
+  color: var(--primary-color);
+  margin: 0 10px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--secondary-color);
+}
+
+/* Hero section */
+.hero {
+  background-image: url('../images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: var(--primary-color);
+  text-align: center;
+  padding: 150px 20px;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  color: var(--text-dark);
+}
+
+.btn-cta {
+  background-color: var(--secondary-color);
+  border: none;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-cta:hover {
+  background-color: #db9e00;
+}
+
+/* Section base spacing */
+.section-padding {
+  padding: 60px 0;
+}
+
+/* Activities grid */
+.activities-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.activity-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.activity-card-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-card-body h5 {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.activity-card-body p {
+  flex: 1;
+  margin-bottom: 15px;
+}
+
+.activity-card-body .price {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.activity-card-body button {
+  background-color: var(--secondary-color);
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.activity-card-body button:hover {
+  background-color: #db9e00;
+}
+
+/* Registration form section */
+.registration-section {
+  background-color: #f9fafb;
+}
+
+.registration-form {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Gallery styles */
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.gallery-container img {
+  border-radius: 8px;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 60px;
+}
+
+footer a {
+  color: var(--secondary-color);
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Chatbot container styles */
+#chatbot-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--secondary-color);
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 999;
+}
+
+#chatbot-container {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  max-height: 400px;
+  background-color: #fff;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+/* Admin dashboard styles */
+.dashboard {
+  padding: 40px 0;
+}
+
+.dashboard-section {
+  margin-bottom: 50px;
+}
+
+.dashboard-section h3 {
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.dashboard-table th {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.dashboard-table td button {
+  margin-left: 5px;
+  background-color: var(--secondary-color);
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dashboard-table td button.delete {
+  background-color: #dc3545;
+}
+
+.dashboard-table td button:hover {
+  opacity: 0.9;
+}
