@@ -17,23 +17,18 @@
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><img src="images/logo.png" alt="شعار المدرسة" /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#">الرئيسية</a></li>
-          <li class="nav-item"><a class="nav-link" href="#activities">الأنشطة</a></li>
-          <li class="nav-item"><a class="nav-link" href="#gallery">المعرض</a></li>
-          <li class="nav-item"><a class="nav-link" href="#calendar">التقويم</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">تسجيل الدخول</a></li>
-          <li class="nav-item"><a class="nav-link" href="index-en.html">English</a></li>
-        </ul>
-      </div>
+      <ul class="navbar-nav ms-auto d-flex align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#">الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link" href="#activities">الأنشطة</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">المعرض</a></li>
+        <li class="nav-item"><a class="nav-link" href="#calendar">التقويم</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html">تسجيل الدخول</a></li>
+        <li class="nav-item"><a class="nav-link" href="index-en.html">English</a></li>
+      </ul>
     </div>
   </nav>
 
@@ -66,39 +61,37 @@
     </div>
   </section>
 
-  <!-- Promotions Carousel -->
-  <section class="container my-5">
-    <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <h3>عرض خاص - خصم 30%</h3>
+  <!-- Promotions Section -->
+  <section class="container my-5 promo-section">
+    <div class="row g-4 text-center">
+      <div class="col-md-6 col-lg-3">
+        <div class="promo-card h-100 p-4 shadow-sm rounded">
+          <h3 class="mb-3">عرض خاص - خصم 30%</h3>
           <p>احصل على خصم 30% على جميع الأنشطة الرياضية لفترة محدودة.</p>
-          <a href="#registration" class="btn">اكتشف المزيد</a>
-        </div>
-        <div class="carousel-item">
-          <h3>⚽ بطولة كرة القدم السنوية</h3>
-          <p>انضم إلى بطولة كرة القدم السنوية واربح جوائز قيمة.</p>
-          <a href="#registration" class="btn">سجل الآن</a>
-        </div>
-        <div class="carousel-item">
-          <h3>ورش فنية مجانية</h3>
-          <p>ورش فنية مجانية لجميع الطلاب لتنمية المواهب الإبداعية.</p>
-          <a href="#registration" class="btn">انضم إلينا</a>
-        </div>
-        <div class="carousel-item">
-          <h3>برنامج التفوق الأكاديمي</h3>
-          <p>برنامج شامل لدعم الطلاب المتفوقين وتطوير قدراتهم.</p>
-          <a href="#registration" class="btn">تعرف أكثر</a>
+          <a href="#registration" class="btn btn-warning">اكتشف المزيد</a>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">السابق</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">التالي</span>
-      </button>
+      <div class="col-md-6 col-lg-3">
+        <div class="promo-card h-100 p-4 shadow-sm rounded">
+          <h3 class="mb-3">بطولة كرة القدم السنوية ⚽</h3>
+          <p>انضم إلى بطولة كرة القدم السنوية واربح جوائز قيمة.</p>
+          <a href="#registration" class="btn btn-warning">سجل الآن</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="promo-card h-100 p-4 shadow-sm rounded">
+          <h3 class="mb-3">ورش فنية مجانية</h3>
+          <p>ورش فنية مجانية لجميع الطلاب لتنمية المواهب الإبداعية.</p>
+          <a href="#registration" class="btn btn-warning">انضم إلينا</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="promo-card h-100 p-4 shadow-sm rounded">
+          <h3 class="mb-3">برنامج التفوق الأكاديمي</h3>
+          <p>برنامج شامل لدعم الطلاب المتفوقين وتطوير قدراتهم.</p>
+          <a href="#registration" class="btn btn-warning">تعرف أكثر</a>
+        </div>
+      </div>
     </div>
   </section>
 

@@ -12,23 +12,18 @@
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><img src="images/logo.png" alt="AGS Logo" /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#activities">Activities</a></li>
-          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="#calendar">Calendar</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="login-en.html">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html">العربية</a></li>
-        </ul>
-      </div>
+      <ul class="navbar-nav ms-auto d-flex align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#activities">Activities</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#calendar">Calendar</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="login-en.html">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">العربية</a></li>
+      </ul>
     </div>
   </nav>
 
@@ -61,39 +56,37 @@
     </div>
   </section>
 
-  <!-- Promotions Carousel -->
-  <section class="container my-5">
-    <div id="promoCarouselEn" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <h3>Special Offer - 30% Discount</h3>
+  <!-- Promotions Section -->
+  <section class="container my-5 promo-section">
+    <div class="row g-4 text-center">
+      <div class="col-md-6 col-lg-3">
+        <div class="promo-card h-100 p-4 shadow-sm rounded">
+          <h3 class="mb-3">Special Offer - 30% Discount</h3>
           <p>Get 30% off all sports activities for a limited time.</p>
-          <a href="#registration" class="btn">Discover More</a>
-        </div>
-        <div class="carousel-item">
-          <h3>⚽ Annual Football Tournament</h3>
-          <p>Join the annual football tournament and win valuable prizes.</p>
-          <a href="#registration" class="btn">Register Now</a>
-        </div>
-        <div class="carousel-item">
-          <h3>Free Art Workshops</h3>
-          <p>Free art workshops for all students to develop creative talents.</p>
-          <a href="#registration" class="btn">Join Us</a>
-        </div>
-        <div class="carousel-item">
-          <h3>Academic Excellence Program</h3>
-          <p>A comprehensive program to support outstanding students and develop their abilities.</p>
-          <a href="#registration" class="btn">Learn More</a>
+          <a href="#registration" class="btn btn-warning">Discover More</a>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#promoCarouselEn" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#promoCarouselEn" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      <div class="col-md-6 col-lg-3">
+        <div class="promo-card h-100 p-4 shadow-sm rounded">
+          <h3 class="mb-3">Annual Football Tournament ⚽</h3>
+          <p>Join the annual football tournament and win valuable prizes.</p>
+          <a href="#registration" class="btn btn-warning">Register Now</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="promo-card h-100 p-4 shadow-sm rounded">
+          <h3 class="mb-3">Free Art Workshops</h3>
+          <p>Free art workshops for all students to develop creative talents.</p>
+          <a href="#registration" class="btn btn-warning">Join Us</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="promo-card h-100 p-4 shadow-sm rounded">
+          <h3 class="mb-3">Academic Excellence Program</h3>
+          <p>A comprehensive program to support outstanding students and develop their abilities.</p>
+          <a href="#registration" class="btn btn-warning">Learn More</a>
+        </div>
+      </div>
     </div>
   </section>
 
