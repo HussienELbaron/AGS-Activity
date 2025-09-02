@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+/*
+  Global stylesheet for AGS Activities platform.
+  Defines variables, layout styles, header/sidebar design, content sections,
+  cards, chatbot, and responsive behaviors.
+*/
+
+:root {
+  --primary-color: #08296c; /* dark blue derived from logo */
+  --secondary-color: #f4b400; /* golden yellow derived from logo */
+  --light-color: #f8f9fa; /* light background */
+  --dark-text: #212529;
+  --transition-speed: 0.3s;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: var(--light-color);
+  color: var(--dark-text);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Header */
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.header .brand img {
+  height: 50px;
+}
+.header-actions .btn {
+  font-size: 0.9rem;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 240px;
+  background-color: #fff;
+  border-left: 1px solid #eee;
+  overflow-y: auto;
+  padding-top: 80px;
+  transform: translateX(100%);
+  transition: transform var(--transition-speed) ease;
+  z-index: 1040;
+}
+html[dir='ltr'] .sidebar {
+  border-right: 1px solid #eee;
+  border-left: none;
+  transform: translateX(-100%);
+}
+.sidebar.open {
+  transform: translateX(0);
+}
+.sidebar .menu {
+  list-style: none;
+  padding: 0 1rem;
+  margin: 0;
+}
+.sidebar .menu li {
+  margin-bottom: 0.75rem;
+}
+.sidebar .menu a {
+  text-decoration: none;
+  color: var(--dark-text);
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+.sidebar .menu a:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+/* Overlay when sidebar open */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1030;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-speed);
+}
+.sidebar-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Content area */
+.content {
+  padding-top: 80px;
+}
+
+/* Hero carousel */
+.carousel-item {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.carousel-item .carousel-caption {
+  background-color: rgba(0, 0, 0, 0.45);
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: #fff;
+  max-width: 60%;
+}
+
+/* Stats section */
+.stats-section .card {
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  text-align: center;
+}
+.stats-section .card h4 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+.stats-section .card p {
+  margin: 0;
+  color: #666;
+}
+
+/* Section headings */
+.events-section h3,
+.carousel-section h3,
+.search-section h3 {
+  color: var(--primary-color);
+}
+
+/* Cards for activities, events, trips */
+.card-activity {
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.card-activity:hover {
+  transform: translateY(-3px);
+}
+.card-activity img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+.card-activity .card-body {
+  padding: 1rem;
+}
+.card-activity .card-title {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+.card-activity .card-text {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+.card-activity .btn {
+  font-size: 0.85rem;
+  margin-inline-end: 0.5rem;
+}
+
+/* Chatbot */
+.chatbot-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1050;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.chatbot-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 320px;
+  background-color: #fff;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 1050;
+}
+.chatbot-header {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.chatbot-messages {
+  padding: 0.75rem;
+  max-height: 250px;
+  overflow-y: auto;
+}
+.chatbot-input {
+  border-top: 1px solid #ddd;
+  padding: 0.5rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+.footer a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Auth forms */
+.auth-container {
+  min-height: 100vh;
+  background-color: var(--light-color);
+}
+
+/* Gallery */
+#gallery-grid .card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+#gallery-grid .card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .header-actions a.btn {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.6rem;
+  }
+  .chatbot-container {
+    width: 280px;
+  }
+}

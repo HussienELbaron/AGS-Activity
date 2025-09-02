@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!--
+  Admin dashboard page (English version).
+  Provides sections to manage all aspects of the platform.
+-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - AGS</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      .admin-sidebar {
+        width: 250px;
+        min-height: 100vh;
+        background-color: #f8f9fa;
+        border-right: 1px solid #dee2e6;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        padding-top: 80px;
+      }
+      .admin-sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+      .admin-sidebar li {
+        margin-bottom: 10px;
+      }
+      .admin-sidebar a {
+        display: block;
+        padding: 10px 15px;
+        color: #333;
+        border-radius: 4px;
+      }
+      .admin-sidebar a:hover,
+      .admin-sidebar a.active {
+        background-color: var(--primary-color);
+        color: #fff;
+      }
+      .admin-content {
+        margin-left: 270px;
+        padding: 80px 20px;
+      }
+      .admin-section {
+        margin-bottom: 40px;
+      }
+      .admin-section h3 {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header d-flex align-items-center justify-content-between" style="position: fixed; top: 0; width: 100%; z-index: 1030;">
+      <div class="d-flex align-items-center">
+        <a href="../index-en.html" class="brand"><img src="../images/logo.png" alt="Logo" /></a>
+      </div>
+      <div class="header-actions d-flex align-items-center">
+        <button class="btn btn-outline-secondary me-2" onclick="switchLanguage()">العربية/English</button>
+        <a href="login-en.html" class="btn btn-outline-danger">Logout</a>
+      </div>
+    </header>
+    <aside class="admin-sidebar">
+      <ul>
+        <li><a href="#appearance" class="active" onclick="scrollToSection(event)">Settings & Appearance</a></li>
+        <li><a href="#subscribers" onclick="scrollToSection(event)">Subscribers</a></li>
+        <li><a href="#admins" onclick="scrollToSection(event)">Admins</a></li>
+        <li><a href="#email-templates" onclick="scrollToSection(event)">Email Templates</a></li>
+        <li><a href="#slider" onclick="scrollToSection(event)">Home Slider</a></li>
+        <li><a href="#paid-activities" onclick="scrollToSection(event)">Paid Activities</a></li>
+        <li><a href="#free-activities" onclick="scrollToSection(event)">Free Activities</a></li>
+        <li><a href="#trips" onclick="scrollToSection(event)">Trips</a></li>
+        <li><a href="#gallery" onclick="scrollToSection(event)">Gallery</a></li>
+        <li><a href="#calendar" onclick="scrollToSection(event)">Academic Calendar</a></li>
+        <li><a href="#contact-info" onclick="scrollToSection(event)">Contact Info</a></li>
+        <li><a href="#chatbot-training" onclick="scrollToSection(event)">Chatbot Training</a></li>
+      </ul>
+    </aside>
+    <div class="admin-content">
+      <section id="appearance" class="admin-section">
+        <h3>Settings & Appearance</h3>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Default Language</label>
+            <select class="form-select" id="default-language-en">
+              <option value="ar">Arabic</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Theme Mode</label>
+            <select class="form-select" id="theme-mode-en">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+          <div class="col-12 text-end mt-3">
+            <button class="btn btn-primary">Save Settings</button>
+          </div>
+        </div>
+      </section>
+      <section id="subscribers" class="admin-section">
+        <h3>Subscribers</h3>
+        <button class="btn btn-success mb-3" onclick="addSubscriber()">Add Subscriber</button>
+        <div id="subscribers-list-en" class="table-responsive"></div>
+      </section>
+      <section id="admins" class="admin-section">
+        <h3>Admins</h3>
+        <button class="btn btn-success mb-3" onclick="addAdmin()">Add Admin</button>
+        <div id="admins-list-en" class="table-responsive"></div>
+      </section>
+      <section id="email-templates" class="admin-section">
+        <h3>Email Templates</h3>
+        <textarea id="email-template-en" class="form-control" rows="5" placeholder="Email body..."></textarea>
+        <div class="text-end mt-2">
+          <button class="btn btn-primary">Save</button>
+        </div>
+      </section>
+      <section id="slider" class="admin-section">
+        <h3>Home Slider</h3>
+        <button class="btn btn-success mb-3" onclick="addSlide()">Add Slide</button>
+        <div id="slider-list-en" class="row g-3"></div>
+      </section>
+      <section id="paid-activities" class="admin-section">
+        <h3>Paid Activities</h3>
+        <button class="btn btn-success mb-3" onclick="addPaidActivity()">Add Activity</button>
+        <div id="paid-activities-table-en" class="table-responsive"></div>
+      </section>
+      <section id="free-activities" class="admin-section">
+        <h3>Free Activities</h3>
+        <button class="btn btn-success mb-3" onclick="addFreeActivity()">Add Activity</button>
+        <div id="free-activities-table-en" class="table-responsive"></div>
+      </section>
+      <section id="trips" class="admin-section">
+        <h3>Trips</h3>
+        <button class="btn btn-success mb-3" onclick="addTrip()">Add Trip</button>
+        <div id="trips-table-en" class="table-responsive"></div>
+      </section>
+      <section id="gallery" class="admin-section">
+        <h3>Gallery</h3>
+        <button class="btn btn-success mb-3" onclick="addGalleryImage()">Add Image</button>
+        <div id="gallery-table-en" class="table-responsive"></div>
+      </section>
+      <section id="calendar" class="admin-section">
+        <h3>Academic Calendar</h3>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">First Term</label>
+            <input type="file" class="form-control" id="term1-pdf-en" accept="application/pdf" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Second Term</label>
+            <input type="file" class="form-control" id="term2-pdf-en" accept="application/pdf" />
+          </div>
+        </div>
+        <div class="text-end mt-3">
+          <button class="btn btn-primary">Save</button>
+        </div>
+      </section>
+      <section id="contact-info" class="admin-section">
+        <h3>Contact Info</h3>
+        <div class="mb-3">
+          <label class="form-label">Address</label>
+          <input type="text" class="form-control" id="contact-address-en" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Phone</label>
+          <input type="tel" class="form-control" id="contact-phone-en" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" id="contact-email-en" />
+        </div>
+        <div class="text-end">
+          <button class="btn btn-primary">Save</button>
+        </div>
+      </section>
+      <section id="chatbot-training" class="admin-section">
+        <h3>Chatbot Training</h3>
+        <p>Add frequently asked questions and answers to train the chatbot.</p>
+        <form id="chatbot-training-form-en" class="row g-3 align-items-end">
+          <div class="col-md-5">
+            <label class="form-label">Question</label>
+            <input type="text" class="form-control" id="bot-question-en" />
+          </div>
+          <div class="col-md-5">
+            <label class="form-label">Answer</label>
+            <input type="text" class="form-control" id="bot-answer-en" />
+          </div>
+          <div class="col-md-2 d-grid">
+            <button type="submit" class="btn btn-success">Add</button>
+          </div>
+        </form>
+        <div id="chatbot-training-list-en" class="mt-3"></div>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+      function scrollToSection(event) {
+        event.preventDefault();
+        document.querySelectorAll('.admin-sidebar a').forEach((link) => link.classList.remove('active'));
+        event.target.classList.add('active');
+        const target = document.querySelector(event.target.getAttribute('href'));
+        if (target) {
+          window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+        }
+      }
+      function switchLanguage() {
+        const currentUrl = window.location.href;
+        if (currentUrl.endsWith('dashboard-en.html')) {
+          window.location.href = 'dashboard.html';
+        } else {
+          window.location.href = 'dashboard-en.html';
+        }
+      }
+    </script>
+  </body>
+</html>

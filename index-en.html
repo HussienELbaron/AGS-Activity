@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--
+  Home page for AGS Activities platform (English version).
+  Contains a full-width hero slider, statistics cards, advanced search with filters,
+  sections for upcoming events, popular activities, current events, and current trips.
+  Action buttons for login, language switch and admin panel are separate from the
+  navigation menu.
+-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Generations International Schools - Home</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <!-- Sidebar toggle button (LTR on left) -->
+        <button class="menu-toggle me-2" onclick="toggleSidebar()">☰</button>
+        <!-- Logo -->
+        <a href="index-en.html" class="brand">
+          <img src="images/logo.png" alt="School Logo" />
+        </a>
+      </div>
+      <!-- Action buttons: login, language switch, admin panel -->
+      <div class="header-actions d-flex align-items-center">
+        <a href="login-en.html" class="btn btn-outline-primary me-2">Register/Login</a>
+        <a href="index.html" class="btn btn-outline-secondary me-2">العربية</a>
+        <a href="admin/login.html" class="btn btn-outline-secondary" title="Admin Panel">🔒</a>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav id="sidebar" class="sidebar">
+      <ul class="menu">
+        <li><a href="index-en.html" onclick="toggleSidebar()">🏠 Home</a></li>
+        <li><a href="paid-activities-en.html" onclick="toggleSidebar()">💰 Paid Activities</a></li>
+        <li><a href="free-activities-en.html" onclick="toggleSidebar()">🎯 Free Activities</a></li>
+        <li><a href="trips-en.html" onclick="toggleSidebar()">🚌 Trips</a></li>
+        <li><a href="calendar-en.html" onclick="toggleSidebar()">📅 Academic Calendar</a></li>
+        <li><a href="gallery-en.html" onclick="toggleSidebar()">🖼️ Gallery</a></li>
+        <li><a href="contact-en.html" onclick="toggleSidebar()">✉️ Contact Us</a></li>
+      </ul>
+    </nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Main Content -->
+    <main class="content">
+      <!-- Hero Slider using Bootstrap carousel -->
+      <section id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" style="background-image: url('images/hero-bg.jpg')">
+            <div class="carousel-caption text-start">
+              <h2>Upcoming Events</h2>
+              <p>Discover our latest activities and upcoming events and join us!</p>
+            </div>
+          </div>
+          <!-- Additional slides can be added via the admin panel -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </section>
+
+      <!-- Statistics Section -->
+      <section class="stats-section text-center py-5">
+        <div class="container">
+          <div class="row" id="stats-container">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Search & Filters -->
+      <section class="search-section py-5 bg-light">
+        <div class="container">
+          <h3 class="text-center mb-4">Search Activities & Trips</h3>
+          <form id="search-form" class="row g-3 justify-content-center">
+            <div class="col-md-4">
+              <input type="text" class="form-control" id="search-query" placeholder="Keyword" />
+            </div>
+            <div class="col-md-3">
+              <select class="form-select" id="filter-type">
+                <option value="all">All Types</option>
+                <option value="paid">Paid Activity</option>
+                <option value="free">Free Activity</option>
+                <option value="trip">Trip</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select" id="filter-grade">
+                <option value="all">All Grades</option>
+                <option value="4">Grade 4</option>
+                <option value="5">Grade 5</option>
+                <option value="6">Grade 6</option>
+                <option value="7">Grade 7</option>
+                <option value="8">Grade 8</option>
+                <option value="9">Grade 9</option>
+                <option value="10">Grade 10</option>
+                <option value="11">Grade 11</option>
+                <option value="12">Grade 12</option>
+              </select>
+            </div>
+            <div class="col-md-2 d-grid">
+              <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+          </form>
+          <div id="search-results" class="mt-4"></div>
+        </div>
+      </section>
+
+      <!-- Upcoming Events Section -->
+      <section class="events-section py-5">
+        <div class="container">
+          <h3 class="text-center mb-4">Upcoming Events</h3>
+          <div id="upcoming-events" class="row g-4 justify-content-center">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Most Requested Activities Carousel -->
+      <section class="carousel-section py-5 bg-light">
+        <div class="container">
+          <h3 class="text-center mb-4">Most Requested Activities</h3>
+          <div id="popular-activities" class="row g-4 justify-content-center">
+            <!-- Activity cards here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Current Events Carousel -->
+      <section class="carousel-section py-5">
+        <div class="container">
+          <h3 class="text-center mb-4">Current Events</h3>
+          <div id="current-events" class="row g-4 justify-content-center">
+            <!-- Event cards here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Current Trips Carousel -->
+      <section class="carousel-section py-5 bg-light">
+        <div class="container">
+          <h3 class="text-center mb-4">Current Trips</h3>
+          <div id="current-trips" class="row g-4 justify-content-center">
+            <!-- Trip cards here -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Chatbot Toggle -->
+    <button id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChatbot()">💬</button>
+    <div id="chatbot-container" class="chatbot-container">
+      <div class="chatbot-header">
+        <span>AGS Assistant</span>
+        <button class="btn-close btn-sm" onclick="toggleChatbot()"></button>
+      </div>
+      <div id="chatbot-messages" class="chatbot-messages"></div>
+      <div class="chatbot-input d-flex">
+        <input type="text" id="chatbot-user-input" class="form-control" placeholder="Ask a question..." />
+        <button class="btn btn-secondary" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center py-4">
+      <p>&copy; 2025 Advanced Generations International Schools. All rights reserved.</p>
+      <p>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+      </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chatbot.js"></script>
+  </body>
+</html>

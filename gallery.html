@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+  صفحة معرض الصور للأنشطة والرحلات.
+  توفر فلاتر للتصفية بحسب النوع والوقت.
+-->
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>معرض الصور - مدارس الأجيال المتطورة</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="header d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <button class="menu-toggle me-2" onclick="toggleSidebar()">☰</button>
+        <a href="index.html" class="brand"><img src="images/logo.png" alt="شعار" /></a>
+      </div>
+      <div class="header-actions d-flex align-items-center">
+        <a href="login.html" class="btn btn-outline-primary me-2">تسجيل/دخول</a>
+        <a href="gallery-en.html" class="btn btn-outline-secondary me-2">English</a>
+        <a href="admin/login.html" class="btn btn-outline-secondary">🔒</a>
+      </div>
+    </header>
+    <nav id="sidebar" class="sidebar">
+      <ul class="menu">
+        <li><a href="index.html" onclick="toggleSidebar()">🏠 الرئيسية</a></li>
+        <li><a href="paid-activities.html" onclick="toggleSidebar()">💰 الأنشطة المدفوعة</a></li>
+        <li><a href="free-activities.html" onclick="toggleSidebar()">🎯 الأنشطة المجانية</a></li>
+        <li><a href="trips.html" onclick="toggleSidebar()">🚌 الرحلات</a></li>
+        <li><a href="calendar.html" onclick="toggleSidebar()">📅 التقويم الدراسى</a></li>
+        <li><a href="gallery.html" onclick="toggleSidebar()">🖼️ معرض الصور</a></li>
+        <li><a href="contact.html" onclick="toggleSidebar()">✉️ تواصل معنا</a></li>
+      </ul>
+    </nav>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <main class="content py-5">
+      <div class="container">
+        <h2 class="mb-4 text-center">معرض الصور</h2>
+        <div class="row mb-4 g-3">
+          <div class="col-md-4">
+            <select id="filter-gallery-type" class="form-select">
+              <option value="all">جميع الأنواع</option>
+              <option value="activity">نشاط</option>
+              <option value="trip">رحلة</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <select id="filter-gallery-time" class="form-select">
+              <option value="all">جميع الأوقات</option>
+              <option value="recent">الأحدث</option>
+              <option value="old">الأقدم</option>
+            </select>
+          </div>
+          <div class="col-md-4 d-grid">
+            <button class="btn btn-primary" onclick="filterGallery()">تصفية</button>
+          </div>
+        </div>
+        <div id="gallery-grid" class="row g-4">
+          <!-- بطاقات الصور تُحقن عبر JS -->
+        </div>
+      </div>
+    </main>
+    <!-- Chatbot -->
+    <button id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChatbot()">💬</button>
+    <div id="chatbot-container" class="chatbot-container">
+      <div class="chatbot-header"><span>مساعد AGS</span><button class="btn-close btn-sm" onclick="toggleChatbot()"></button></div>
+      <div id="chatbot-messages" class="chatbot-messages"></div>
+      <div class="chatbot-input d-flex">
+        <input type="text" id="chatbot-user-input" class="form-control" placeholder="اكتب سؤالك..." />
+        <button class="btn btn-secondary" onclick="sendMessage()">إرسال</button>
+      </div>
+    </div>
+    <footer class="footer text-center py-4">
+      <p>جميع الحقوق محفوظة &copy; مدارس الأجيال المتطورة العالمية 2025</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chatbot.js"></script>
+  </body>
+</html>
