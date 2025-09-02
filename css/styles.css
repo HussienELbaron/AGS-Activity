@@ -121,11 +121,14 @@ body {
   border: none;
 }
 
-/* نستخدم لونًا ثابتًا بدلاً من الدالة غير المدعومة */
+/*
+ * Note: CSS native does not support the Sass function `darken()`.
+ * To avoid invalid CSS that may break the file on GitHub Pages, we explicitly
+ * set a darker shade of the secondary color for button hover.
+ */
 .carousel-item .btn:hover {
-  background-color: #db9e00; /* لون أغمق بنسبة 10% تقريبا من اللون الأصفر */
+  background-color: #db9e00; /* 10% darker than the golden yellow */
 }
-
 
 /* Activities tabs */
 .activities-section {
