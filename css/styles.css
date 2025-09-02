@@ -21,6 +21,9 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
 }
 
 /* Header */
@@ -153,6 +156,7 @@ body {
 /* Content area */
 .content {
   padding-top: 80px;
+      flex-grow: 1;
 }
 
 /* Hero carousel */
@@ -282,6 +286,17 @@ body {
     .modal-content {
       border-radius: 12px;
       overflow: hidden;
+    }
+
+    /* Auth pages */
+    .auth-container {
+      min-height: calc(100vh - 120px);
+      padding-top: 60px;
+      padding-bottom: 60px;
+      background: linear-gradient(135deg, #f8fbff 0%, #e6f0fa 100%);
+    }
+    .auth-container .card {
+      border-radius: 12px;
     }
     .modal-header {
       background-color: var(--primary-color);

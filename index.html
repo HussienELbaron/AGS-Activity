@@ -20,19 +20,12 @@
   </head>
   <body>
     <!-- Header -->
-    <header class="header d-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center">
-        <!-- Sidebar toggle button (RTL on right) -->
-        <button class="menu-toggle me-2" onclick="toggleSidebar()">☰</button>
-        <!-- Logo -->
-        <a href="index.html" class="brand">
-          <img src="images/logo.png" alt="شعار المدرسة" />
-        </a>
-      </div>
-      <!-- Action buttons: login, language switch, admin panel -->
-      <div class="header-actions d-flex align-items-center">
-        <a href="login.html" class="btn btn-outline-primary me-2">تسجيل/دخول</a>
-        <a href="index-en.html" class="btn btn-outline-secondary me-2">English</a>
+    <header class="header">
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+      <a href="index.html" class="brand"><img src="images/logo.png" alt="شعار المدرسة" /></a>
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-outline-primary">تسجيل/دخول</a>
+        <a href="index-en.html" class="btn btn-outline-secondary">English</a>
         <a href="admin/login.html" class="btn btn-outline-secondary" title="لوحة التحكم">🔒</a>
       </div>
     </header>
