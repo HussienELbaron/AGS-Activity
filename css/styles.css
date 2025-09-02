@@ -126,9 +126,11 @@ body {
  * To avoid invalid CSS that may break the file on GitHub Pages, we explicitly
  * set a darker shade of the secondary color for button hover.
  */
+/* نستخدم لونًا ثابتًا بدلاً من الدالة غير المدعومة */
 .carousel-item .btn:hover {
-  background-color: #db9e00; /* 10% darker than the golden yellow */
+  background-color: #db9e00; /* لون أغمق بنسبة 10% تقريبًا من اللون الأصفر */
 }
+
 
 /* Activities tabs */
 .activities-section {
