@@ -175,3 +175,18 @@ document.addEventListener('DOMContentLoaded', function () {
   handleRegistrationForm();
   handleContactForm();
 });
+
+// Sidebar toggle functionality
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  if (sidebar) {
+    const isOpen = sidebar.classList.contains('open');
+    // Toggle sidebar open state
+    sidebar.classList.toggle('open');
+    // Show or hide overlay accordingly
+    if (overlay) {
+      overlay.style.display = isOpen ? 'none' : 'block';
+    }
+  }
+}

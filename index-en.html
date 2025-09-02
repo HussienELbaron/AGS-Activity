@@ -14,56 +14,72 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <!-- We avoid external icon libraries here to ensure the site works offline. Emojis are used for sidebar icons. -->
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="index-en.html"
-          ><img src="images/logo.png" alt="School logo"
-        /></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#activities">Activities</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#gallery">Gallery</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#calendar">Calendar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="admin/login.html">Admin Panel</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">العربية</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <!-- Header with sidebar toggle and brand -->
+    <header class="header-bar">
+      <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+      <a href="index-en.html" class="brand"
+        ><img src="images/logo.png" alt="School logo"
+      /></a>
+    </header>
+
+    <!-- Top anchor for scrolling to page start -->
+    <div id="top"></div>
+
+    <!-- Overlay that appears when the sidebar is open -->
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Sidebar navigation -->
+    <div id="sidebar" class="sidebar">
+      <ul class="menu">
+        <li>
+          <a href="#" onclick="toggleSidebar(); scrollToSection('top'); return false;">
+            <span class="icon">🏠</span>
+            <span class="label">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="#activities" onclick="toggleSidebar()">
+            <span class="icon">🏃</span>
+            <span class="label">Activities</span>
+          </a>
+        </li>
+        <li>
+          <a href="#gallery" onclick="toggleSidebar()">
+            <span class="icon">🖼️</span>
+            <span class="label">Gallery</span>
+          </a>
+        </li>
+        <li>
+          <a href="#calendar" onclick="toggleSidebar()">
+            <span class="icon">📅</span>
+            <span class="label">Calendar</span>
+          </a>
+        </li>
+        <li>
+          <a href="#contact" onclick="toggleSidebar()">
+            <span class="icon">✉️</span>
+            <span class="label">Contact</span>
+          </a>
+        </li>
+        <li>
+          <a href="admin/login.html" onclick="toggleSidebar()">
+            <span class="icon">⚙️</span>
+            <span class="label">Admin Panel</span>
+          </a>
+        </li>
+        <li>
+          <a href="index.html" onclick="toggleSidebar()">
+            <span class="icon">🌐</span>
+            <span class="label">العربية</span>
+          </a>
+        </li>
+      </ul>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">

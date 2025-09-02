@@ -24,31 +24,139 @@ body {
   background-color: #fdfdfd;
   color: var(--text-dark);
   line-height: 1.6;
+  /* Offset content below fixed header */
+  padding-top: 80px;
 }
 
 /* Navbar styling */
-.navbar {
+/* Header bar with brand and sidebar toggle */
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #ffffff;
   border-bottom: 1px solid #e6e6e6;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-  z-index: 1000;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
 }
 
-.navbar-brand img {
+/* Reverse header items in RTL so brand appears on the right and toggle on the left */
+html[dir='rtl'] .header-bar {
+  flex-direction: row-reverse;
+}
+
+.header-bar .brand img {
   max-height: 50px;
 }
 
-.navbar-nav .nav-link {
-  color: var(--primary-color);
-  margin: 0 10px;
-  font-weight: 600;
-  transition: color 0.2s ease;
+/* Sidebar and toggle */
+.sidebar {
+  /*
+   * Sidebar container
+   * We use a light backdrop and subtle shadow to distinguish it from the page
+   * content. The sidebar is off–canvas by default and slides in when the
+   * `.open` class is added via JavaScript. Direction is handled in the
+   * RTL/LTR rules below.
+   */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 260px;
+  background-color: #f9fafb;
+  z-index: 1050;
+  overflow-y: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link.active {
+/* Sidebar placement for RTL */
+html[dir='rtl'] .sidebar {
+  right: 0;
+  transform: translateX(100%);
+  border-left: 1px solid #e6e6e6;
+}
+
+html[dir='rtl'] .sidebar.open {
+  transform: translateX(0);
+}
+
+/* Sidebar placement for LTR */
+html[dir='ltr'] .sidebar {
+  left: 0;
+  transform: translateX(-100%);
+  border-right: 1px solid #e6e6e6;
+}
+
+html[dir='ltr'] .sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar .menu {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+}
+
+.sidebar .menu li {
+  margin-bottom: 10px;
+}
+
+.sidebar .menu a {
+  display: block;
+  padding: 10px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .menu a:hover {
+  background-color: #eef2f6;
   color: var(--secondary-color);
 }
+
+/* Spacing and sizing for icons (emojis) within menu links */
+.sidebar .menu a .icon {
+  font-size: 1.2rem;
+  /* margin-inline-end places space to the end of the inline axis, adapting for LTR/RTL */
+  margin-inline-end: 10px;
+}
+
+/* Sidebar overlay that appears when the menu is open */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  z-index: 1040;
+}
+
+.sidebar-toggle {
+  width: 40px;
+  height: 40px;
+  background-color: var(--secondary-color);
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Remove automatic margins for the toggle; positioning handled by flexbox */
 
 /* Hero section */
 .hero {
