@@ -121,9 +121,11 @@ body {
   border: none;
 }
 
+/* نستخدم لونًا ثابتًا بدلاً من الدالة غير المدعومة */
 .carousel-item .btn:hover {
-  background-color: darken(var(--secondary-color), 10%);
+  background-color: #db9e00; /* لون أغمق بنسبة 10% تقريبا من اللون الأصفر */
 }
+
 
 /* Activities tabs */
 .activities-section {
