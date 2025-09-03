@@ -24,20 +24,32 @@
     <header class="header">
       <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
       <a href="index.html" class="brand"><img src="images/logo.png" alt="شعار المدرسة" /></a>
+      
+        <nav class="main-nav d-none d-lg-flex">
+          <a class="btn" href="index.html"><i class="bi bi-house-door"></i> الرئيسية</a>
+          <a class="btn" href="paid-activities.html"><i class="bi bi-cash-stack"></i> المدفوعة</a>
+          <a class="btn" href="free-activities.html"><i class="bi bi-bullseye"></i> المجانية</a>
+          <a class="btn" href="trips.html"><i class="bi bi-bus-front"></i> الرحلات</a>
+          <a class="btn" href="calendar.html"><i class="bi bi-calendar-event"></i> التقويم</a>
+          <a class="btn" href="gallery.html"><i class="bi bi-images"></i> المعرض</a>
+          <a class="btn" href="talents.html"><i class="bi bi-stars"></i> المواهب</a>
+          <a class="btn" href="contact.html"><i class="bi bi-envelope"></i> اتصل بنا</a>
+        </nav>
+        
       <div class="header-actions">
         <a href="login.html" class="btn btn-outline-primary">تسجيل/دخول</a>
-        <a href="index-en.html" class="btn btn-language">English</a>
-        <a href="admin/login.html" class="btn btn-glass-yellow btn-admin" title="لوحة التحكم"><i class="bi bi-speedometer2"></i></a>
+        <a href="index-en.html" class="btn">English</a>
+        <a href="admin/login.html" class="btn btn-outline-secondary" title="لوحة التحكم"><i class="bi bi-speedometer2"></i></a>
       </div>
     </header>
 
     <!-- Sidebar -->
     <nav id="sidebar" class="sidebar">
       <ul class="menu">
-        <li><a href="index.html" onclick="toggleSidebar()"><i class="bi bi-house-door"></i> الرئيسية</a></li>
-        <li><a href="paid-activities.html" onclick="toggleSidebar()"><i class="bi bi-cash-stack"></i> الأنشطة المدفوعة</a></li>
-        <li><a href="free-activities.html" onclick="toggleSidebar()"><i class="bi bi-bullseye"></i> الأنشطة المجانية</a></li>
-        <li><a href="trips.html" onclick="toggleSidebar()"><i class="bi bi-bus-front"></i> الرحلات</a></li>
+        <li><a href="index.html" onclick="toggleSidebar()">🏠 الرئيسية</a></li>
+        <li><a href="paid-activities.html" onclick="toggleSidebar()">💰 الأنشطة المدفوعة</a></li>
+        <li><a href="free-activities.html" onclick="toggleSidebar()">🎯 الأنشطة المجانية</a></li>
+        <li><a href="trips.html" onclick="toggleSidebar()">🚌 الرحلات</a></li>
         <li><a href="calendar.html" onclick="toggleSidebar()">📅 التقويم الدراسى</a></li>
         <li><a href="gallery.html" onclick="toggleSidebar()">🖼️ معرض الصور</a></li>
         <li><a href="talents.html" onclick="toggleSidebar()">🌟 الموهوبين</a></li>
@@ -326,7 +338,7 @@
     </main>
 
     <!-- Chatbot Toggle -->
-    <button id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChatbot()">🤖</button>
+    <button id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChatbot()"><i class="bi bi-robot"></i></button>
     <div id="chatbot-container" class="chatbot-container">
       <div class="chatbot-header">
         <span>مساعد AGS</span>

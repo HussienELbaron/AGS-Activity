@@ -24,23 +24,35 @@
     <header class="header">
       <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
       <a href="index-en.html" class="brand"><img src="images/logo.png" alt="School Logo" /></a>
+      
+        <nav class="main-nav d-none d-lg-flex">
+          <a class="btn" href="index-en.html"><i class="bi bi-house"></i> Home</a>
+          <a class="btn" href="paid-activities-en.html"><i class="bi bi-cash-stack"></i> Paid</a>
+          <a class="btn" href="free-activities-en.html"><i class="bi bi-bullseye"></i> Free</a>
+          <a class="btn" href="trips-en.html"><i class="bi bi-bus-front"></i> Trips</a>
+          <a class="btn" href="calendar-en.html"><i class="bi bi-calendar-event"></i> Calendar</a>
+          <a class="btn" href="gallery-en.html"><i class="bi bi-images"></i> Gallery</a>
+          <a class="btn" href="talents-en.html"><i class="bi bi-stars"></i> Talents</a>
+          <a class="btn" href="contact-en.html"><i class="bi bi-envelope"></i> Contact</a>
+        </nav>
+        
       <div class="header-actions">
         <a href="login-en.html" class="btn btn-outline-primary">Register/Login</a>
-        <a href="index.html" class="btn btn-language">العربية</a>
-        <a href="admin/login.html" class="btn btn-glass-yellow btn-admin" title="Admin Panel"><i class="bi bi-speedometer2"></i></a>
+        <a href="index.html" class="btn">العربية</a>
+        <a href="admin/login.html" class="btn btn-outline-secondary" title="Admin Panel"><i class="bi bi-speedometer2"></i></a>
       </div>
     </header>
 
     <!-- Sidebar -->
     <nav id="sidebar" class="sidebar">
       <ul class="menu">
-        <li><a href="index-en.html" onclick="toggleSidebar()"><i class="bi bi-house"></i> Home</a></li>
-        <li><a href="paid-activities-en.html" onclick="toggleSidebar()"><i class="bi bi-cash-stack"></i> Paid Activities</a></li>
-        <li><a href="free-activities-en.html" onclick="toggleSidebar()"><i class="bi bi-bullseye"></i> Free Activities</a></li>
-        <li><a href="trips-en.html" onclick="toggleSidebar()"><i class="bi bi-bus-front"></i> Trips</a></li>
-        <li><a href="calendar-en.html" onclick="toggleSidebar()"><i class="bi bi-calendar-event"></i> Academic Calendar</a></li>
+        <li><a href="index-en.html" onclick="toggleSidebar()">🏠 Home</a></li>
+        <li><a href="paid-activities-en.html" onclick="toggleSidebar()">💰 Paid Activities</a></li>
+        <li><a href="free-activities-en.html" onclick="toggleSidebar()">🎯 Free Activities</a></li>
+        <li><a href="trips-en.html" onclick="toggleSidebar()">🚌 Trips</a></li>
+        <li><a href="calendar-en.html" onclick="toggleSidebar()">📅 Academic Calendar</a></li>
         <li><a href="gallery-en.html" onclick="toggleSidebar()">🖼️ Gallery</a></li>
-        <li><a href="talents-en.html" onclick="toggleSidebar()"><i class="bi bi-stars"></i> Talents</a></li>
+        <li><a href="talents-en.html" onclick="toggleSidebar()">🌟 Talents</a></li>
         <li><a href="contact-en.html" onclick="toggleSidebar()">✉️ Contact Us</a></li>
       </ul>
     </nav>
@@ -326,7 +338,7 @@
     </main>
 
     <!-- Chatbot Toggle -->
-    <button id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChatbot()">🤖</button>
+    <button id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChatbot()"><i class="bi bi-robot"></i></button>
     <div id="chatbot-container" class="chatbot-container">
       <div class="chatbot-header">
         <span>AGS Assistant</span>

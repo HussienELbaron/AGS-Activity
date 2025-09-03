@@ -129,7 +129,7 @@ body {
       box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
   /* Anchor the LTR sidebar to the left instead of the right */
   left: 0;
-  right: autoutoutouto;
+  right: auto;
     }
 .sidebar.open {
   transform: translateX(0);
@@ -147,7 +147,7 @@ body {
   color: var(--dark-text);
   display: block;
   padding: 0.5rem 0.75rem;
-  border-radius: 4pxx;
+  border-radius: 4px;
   transition: background-color 0.2s;
 }
 .sidebar .menu a:hover {
@@ -497,7 +497,7 @@ html[dir="ltr"] .chatbot-container {
    close button is separated from it. */
 html[dir='rtl'] .modal-header .btn-close {
   left: 0.5rem !important;
-  right: autoutoutouto !important;
+  right: auto !important;
 }
 html[dir='ltr'] .modal-header .btn-close {
   right: 0.5rem !important;
@@ -683,262 +683,79 @@ html[dir='ltr'] .modal-header .btn-close {
     font-size: 1.6rem;
   }
 }
-
-/* === Glassmorphism & Buttons (project patch) === */
+/* === Patch (Spec update) === */
 :root{
-  --primary-color:#0d6efd; /* bright bootstrap blue */
-  --glass-bg: rgba(255,255,255,0.18);
-  --glass-border: rgba(255,255,255,0.35);
+  --primary-color: #0285ff;
+  --yellow: #fac228;
+  --ink: #08296c;
   --glass-blur: blur(12px);
-  --yellow:#f4b400;
-  --ink:#08296c;
 }
 
-/* Generic glass panel */
-.glass, .glassy, .section-title-glass, .modal-header.glass {
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 24px rgba(0,0,0,.12);
-  border-radius: 16px;
-}
-
-/* Buttons: blue glass & yellow glass */
-.btn, .btn-primary, .btn-outline-primary {
-  --bs-btn-bg: var(--primary-color);
-  --bs-btn-color: #fff;
-  --bs-btn-border-color: transparent;
-  --bs-btn-hover-bg: #0b5ed7;
-  --bs-btn-hover-border-color: transparent;
-}
-.btn-glass {
-  color:#fff;
-  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35));
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid rgba(13,110,253,.55);
-  box-shadow: 0 8px 20px rgba(13,110,253,.25);
-}
-.btn-glass:hover { filter: brightness(1.05); }
-
-.btn-glass-yellow {
-  color: var(--ink);
-  background: linear-gradient(135deg, rgba(244,180,0,.55), rgba(244,180,0,.35));
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid rgba(244,180,0,.55);
-  box-shadow: 0 8px 20px rgba(244,180,0,.25);
-}
-.btn-glass-yellow:hover { filter: brightness(1.05); }
-
-/* Headings (homepage) */
-.carousel-caption h2, .section-title, .home-title {
-  display:inline-block;
-  padding:.5rem 1rem;
-  color:#fff;
-  border-radius:16px;
-  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35));
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border:1px solid rgba(13,110,253,.45);
-  text-shadow: 0 1px 2px rgba(0,0,0,.3);
-}
-
-/* Modals: glass header and aligned title/close */
-.modal-header {
-  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35)) !important;
+/* All buttons -> blue glass; hover -> yellow glass */
+.btn{
   color:#fff !important;
+  background: linear-gradient(135deg, rgba(2,133,255,.55), rgba(2,133,255,.35)) !important;
+  border:1px solid rgba(2,133,255,.45) !important;
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
-  border-bottom: 1px solid rgba(255,255,255,.35);
-  align-items:center; /* align title & close on same baseline */
+  box-shadow: 0 8px 20px rgba(2,133,255,.25);
 }
-.modal-header .btn-close { filter: invert(1) grayscale(1); opacity:.9; }
-
-/* Body subtle icon background */
-body::before{
-  content:"";
-  position:fixed; inset:0;
-  background-image: url('images/pattern.svg');
-  background-size: 320px;
-  background-repeat: repeat;
-  opacity:.06; pointer-events:none; z-index:-1;
+.btn:hover{
+  color: var(--ink) !important;
+  background: linear-gradient(135deg, rgba(250,194,40,.55), rgba(250,194,40,.35)) !important;
+  border:1px solid rgba(250,194,40,.55) !important;
+}
+/* Ensure outline variants also look glassy */
+.btn-outline-primary, .btn-outline-secondary, .btn-primary, .btn-secondary{
+  color:#fff !important;
+  background: linear-gradient(135deg, rgba(2,133,255,.55), rgba(2,133,255,.35)) !important;
+  border:1px solid rgba(2,133,255,.45) !important;
 }
 
-/* Header brand/logo responsive sizes */
-.header .brand img{ height:auto; max-height:96px; }
-@media (max-width: 992px){ .header .brand img{ max-height:72px; } }
-@media (max-width: 768px){ .header .brand img{ max-height:52px; } }
-@media (max-width: 576px){ .header .brand img{ max-height:44px; } }
-
-/* Sidebar fix (English LTR) + glass buttons */
-.sidebar, .admin-sidebar {
-  background: rgba(255,255,255,.6);
+.sidebar, .admin-sidebar{
+  background: rgba(255,255,255,.68) !important;
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
 }
-html[dir='ltr'] .sidebar{ left:0; right:auto; transform: translateX(-100%); }
-.sidebar.open{ transform: translateX(0); }
-.sidebar .menu a,
-.admin-sidebar a{
-  text-decoration:none;
-  display:block;
-  padding:.6rem 1rem;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35));
-  color:#fff;
-  border:1px solid rgba(13,110,253,.45);
-  box-shadow: 0 6px 16px rgba(13,110,253,.2);
-  text-align:center;
-  font-weight:700;
+/* Keep sidebar hidden off-canvas on small screens, but visible as top nav on lg */
+@media(min-width: 992px){
+  #sidebar{ display:none; } /* off-canvas hidden on large */
+  #sidebar-overlay{ display:none !important; }
+  .main-nav{ display:flex !important; gap:1rem; margin-left:1rem; }
 }
-
-/* Admin sidebar safe spacing */
-.admin-sidebar{ padding-top:140px; padding-bottom:120px; }
-.admin-sidebar ul{ padding:0 1rem; }
-
-/* Chatbot: beside its icon */
-.chatbot-toggle{ z-index:1050; }
-.chatbot-container {
-  bottom: 100px; width: 360px;
-  left:auto; transform:none;
+@media(max-width: 991.98px){
+  .main-nav{ display:none !important; }
 }
+.admin-sidebar{ padding-bottom: 120px; } /* safe space bottom */
+
+/* All icons unified navy */
+i, .bi{ color: var(--ink) !important; }
+.sidebar .menu a i{ color: var(--ink) !important; }
+
+.chatbot-toggle{
+  border-radius: 14px !important;
+  width: 64px; height: 64px;
+  display:flex; align-items:center; justify-content:center;
+}
+.chatbot-toggle i{ font-size:28px; color: var(--ink) !important; }
+.chatbot-container{ bottom: 100px; left:auto; transform:none; width: 360px; }
 html[dir='ltr'] .chatbot-container{ right:100px; }
 html[dir='rtl'] .chatbot-container{ left:100px; }
-
-/* Fix tiny typos from older CSS */
-.sidebar .menu a{ border-radius:12px; }
-
-
-/* === Global Glass Buttons & Sidebar refinements (patch 2) === */
-:root{ --ink:#08296c; --yellow:#f4b400; --primary-color:#0d6efd; }
-
-/* Universal glass button baseline */
-.btn{
-  color:#fff !important;
-  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35)) !important;
-  border:1px solid rgba(13,110,253,.45) !important;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 20px rgba(13,110,253,.25);
+@media(max-width:768px){
+  .chatbot-container{ width: 90vw; right: 5vw !important; left: 5vw !important; }
 }
-.btn:hover{ filter:brightness(1.05); }
 
-/* Yellow glass variant */
-.btn-glass-yellow{
+.modal-content{ border-radius: 22px !important; overflow:hidden; }
+.modal-header{
+  background: var(--yellow) !important;
   color: var(--ink) !important;
-  background: linear-gradient(135deg, rgba(244,180,0,.55), rgba(244,180,0,.35)) !important;
-  border:1px solid rgba(244,180,0,.55) !important;
-  box-shadow: 0 8px 20px rgba(244,180,0,.22);
+  align-items:center; /* align title & close */
 }
-.btn-glass-yellow:hover{
-  color:#fff !important;
-  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35)) !important;
-  border:1px solid rgba(13,110,253,.45) !important;
+.modal-header .btn-close{
+  filter: invert(34%) sepia(75%) saturate(2484%) hue-rotate(186deg) brightness(96%) contrast(101%);
+  opacity:1;
 }
-
-/* Language switch -> blue glass ; hover -> yellow glass */
-.btn-language{ color:#fff !important; }
-.btn-language:hover{
-  color: var(--ink) !important;
-  background: linear-gradient(135deg, rgba(244,180,0,.55), rgba(244,180,0,.35)) !important;
-  border:1px solid rgba(244,180,0,.55) !important;
+.modal-header .btn-close:hover{
+  filter:none;
+  background: rgba(8,41,108,.1);
 }
-
-/* Admin (dashboard) button -> yellow glass; hover invert */
-.btn-admin{ color: var(--ink) !important; }
-.btn-admin:hover{ color:#fff !important; }
-
-/* Sidebar glass background (white translucent) */
-.sidebar, .admin-sidebar{
-  background: rgba(255,255,255,.65) !important;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-}
-
-/* Ensure sidebar opens on desktop always */
-@media(min-width:992px){
-  .sidebar{ transform: none !important; }
-  #sidebar-overlay{ display:none !important; }
-}
-
-/* Sidebar icons alignment + color */
-.sidebar .menu a i{
-  width: 1.25rem;
-  display:inline-block;
-  text-align:center;
-  margin-inline-end: .5rem;
-  color: var(--ink);
-}
-.sidebar .menu a{ color:#0b1220; font-weight:700; }
-
-/* Menu toggle above everything */
-.menu-toggle{ position:relative; z-index:1100; }
-
-/* Admin header logo sizing to keep page layout intact */
-html[lang="ar"] .header .brand img,
-html[lang="en"] .header .brand img{ max-height:72px; }
-@media (max-width: 768px){ .header .brand img{ max-height:48px; } }
-
-
-/* === Global Glass Buttons & Sidebar refinements (patch 2) === */
-:root{ --ink:#08296c; --yellow:#f4b400; --primary-color:#0d6efd; }
-
-.btn{
-  color:#fff !important;
-  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35)) !important;
-  border:1px solid rgba(13,110,253,.45) !important;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 20px rgba(13,110,253,.25);
-}
-.btn:hover{ filter:brightness(1.05); }
-
-.btn-glass-yellow{
-  color: var(--ink) !important;
-  background: linear-gradient(135deg, rgba(244,180,0,.55), rgba(244,180,0,.35)) !important;
-  border:1px solid rgba(244,180,0,.55) !important;
-  box-shadow: 0 8px 20px rgba(244,180,0,.22);
-}
-.btn-glass-yellow:hover{
-  color:#fff !important;
-  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35)) !important;
-  border:1px solid rgba(13,110,253,.45) !important;
-}
-
-.btn-language{ color:#fff !important; }
-.btn-language:hover{
-  color: var(--ink) !important;
-  background: linear-gradient(135deg, rgba(244,180,0,.55), rgba(244,180,0,.35)) !important;
-  border:1px solid rgba(244,180,0,.55) !important;
-}
-
-.btn-admin{ color: var(--ink) !important; }
-.btn-admin:hover{ color:#fff !important; }
-
-.sidebar, .admin-sidebar{
-  background: rgba(255,255,255,.65) !important;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-}
-
-@media(min-width:992px){
-  .sidebar{ transform: none !important; }
-  #sidebar-overlay{ display:none !important; }
-}
-
-.sidebar .menu a i{
-  width: 1.25rem;
-  display:inline-block;
-  text-align:center;
-  margin-inline-end: .5rem;
-  color: var(--ink);
-}
-.sidebar .menu a{ color:#0b1220; font-weight:700; }
-
-.menu-toggle{ position:relative; z-index:1100; }
-
-html[lang="ar"] .header .brand img,
-html[lang="en"] .header .brand img{ max-height:72px; }
-@media (max-width: 768px){ .header .brand img{ max-height:48px; } }
