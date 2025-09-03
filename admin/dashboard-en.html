@@ -76,8 +76,14 @@
       .admin-section h3 {
         margin-bottom: 1rem;
       }
-    /* injected modal align fix */ .modal-header{align-items:center;} .modal-header .btn-close{margin:0;} </style>
-  </head>
+    /* injected modal align fix */ .modal-header{align-items:center;} .modal-header .btn-close{margin:0;} 
+    /* admin compact logo + content spacing */
+    .header .brand img{ max-height:56px; }
+    .admin-content{ margin-left:270px; padding-top:140px; padding-bottom:100px; padding-inline:20px; }
+    .admin-sidebar a{ font-weight:700; }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+</head>
   <body>
     <header class="header d-flex align-items-center justify-content-between" style="position: fixed; top: 0; width: 100%; z-index: 1030;">
       <div class="d-flex align-items-center">

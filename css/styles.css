@@ -129,7 +129,7 @@ body {
       box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
   /* Anchor the LTR sidebar to the left instead of the right */
   left: 0;
-  right: autouto;
+  right: autoutoutouto;
     }
 .sidebar.open {
   transform: translateX(0);
@@ -497,7 +497,7 @@ html[dir="ltr"] .chatbot-container {
    close button is separated from it. */
 html[dir='rtl'] .modal-header .btn-close {
   left: 0.5rem !important;
-  right: autouto !important;
+  right: autoutoutouto !important;
 }
 html[dir='ltr'] .modal-header .btn-close {
   right: 0.5rem !important;
@@ -809,3 +809,136 @@ html[dir='rtl'] .chatbot-container{ left:100px; }
 
 /* Fix tiny typos from older CSS */
 .sidebar .menu a{ border-radius:12px; }
+
+
+/* === Global Glass Buttons & Sidebar refinements (patch 2) === */
+:root{ --ink:#08296c; --yellow:#f4b400; --primary-color:#0d6efd; }
+
+/* Universal glass button baseline */
+.btn{
+  color:#fff !important;
+  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35)) !important;
+  border:1px solid rgba(13,110,253,.45) !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(13,110,253,.25);
+}
+.btn:hover{ filter:brightness(1.05); }
+
+/* Yellow glass variant */
+.btn-glass-yellow{
+  color: var(--ink) !important;
+  background: linear-gradient(135deg, rgba(244,180,0,.55), rgba(244,180,0,.35)) !important;
+  border:1px solid rgba(244,180,0,.55) !important;
+  box-shadow: 0 8px 20px rgba(244,180,0,.22);
+}
+.btn-glass-yellow:hover{
+  color:#fff !important;
+  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35)) !important;
+  border:1px solid rgba(13,110,253,.45) !important;
+}
+
+/* Language switch -> blue glass ; hover -> yellow glass */
+.btn-language{ color:#fff !important; }
+.btn-language:hover{
+  color: var(--ink) !important;
+  background: linear-gradient(135deg, rgba(244,180,0,.55), rgba(244,180,0,.35)) !important;
+  border:1px solid rgba(244,180,0,.55) !important;
+}
+
+/* Admin (dashboard) button -> yellow glass; hover invert */
+.btn-admin{ color: var(--ink) !important; }
+.btn-admin:hover{ color:#fff !important; }
+
+/* Sidebar glass background (white translucent) */
+.sidebar, .admin-sidebar{
+  background: rgba(255,255,255,.65) !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+/* Ensure sidebar opens on desktop always */
+@media(min-width:992px){
+  .sidebar{ transform: none !important; }
+  #sidebar-overlay{ display:none !important; }
+}
+
+/* Sidebar icons alignment + color */
+.sidebar .menu a i{
+  width: 1.25rem;
+  display:inline-block;
+  text-align:center;
+  margin-inline-end: .5rem;
+  color: var(--ink);
+}
+.sidebar .menu a{ color:#0b1220; font-weight:700; }
+
+/* Menu toggle above everything */
+.menu-toggle{ position:relative; z-index:1100; }
+
+/* Admin header logo sizing to keep page layout intact */
+html[lang="ar"] .header .brand img,
+html[lang="en"] .header .brand img{ max-height:72px; }
+@media (max-width: 768px){ .header .brand img{ max-height:48px; } }
+
+
+/* === Global Glass Buttons & Sidebar refinements (patch 2) === */
+:root{ --ink:#08296c; --yellow:#f4b400; --primary-color:#0d6efd; }
+
+.btn{
+  color:#fff !important;
+  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35)) !important;
+  border:1px solid rgba(13,110,253,.45) !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(13,110,253,.25);
+}
+.btn:hover{ filter:brightness(1.05); }
+
+.btn-glass-yellow{
+  color: var(--ink) !important;
+  background: linear-gradient(135deg, rgba(244,180,0,.55), rgba(244,180,0,.35)) !important;
+  border:1px solid rgba(244,180,0,.55) !important;
+  box-shadow: 0 8px 20px rgba(244,180,0,.22);
+}
+.btn-glass-yellow:hover{
+  color:#fff !important;
+  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35)) !important;
+  border:1px solid rgba(13,110,253,.45) !important;
+}
+
+.btn-language{ color:#fff !important; }
+.btn-language:hover{
+  color: var(--ink) !important;
+  background: linear-gradient(135deg, rgba(244,180,0,.55), rgba(244,180,0,.35)) !important;
+  border:1px solid rgba(244,180,0,.55) !important;
+}
+
+.btn-admin{ color: var(--ink) !important; }
+.btn-admin:hover{ color:#fff !important; }
+
+.sidebar, .admin-sidebar{
+  background: rgba(255,255,255,.65) !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+@media(min-width:992px){
+  .sidebar{ transform: none !important; }
+  #sidebar-overlay{ display:none !important; }
+}
+
+.sidebar .menu a i{
+  width: 1.25rem;
+  display:inline-block;
+  text-align:center;
+  margin-inline-end: .5rem;
+  color: var(--ink);
+}
+.sidebar .menu a{ color:#0b1220; font-weight:700; }
+
+.menu-toggle{ position:relative; z-index:1100; }
+
+html[lang="ar"] .header .brand img,
+html[lang="en"] .header .brand img{ max-height:72px; }
+@media (max-width: 768px){ .header .brand img{ max-height:48px; } }
