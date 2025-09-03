@@ -20,7 +20,9 @@ function toggleSidebar() {
 // Chatbot toggle
 function toggleChatbot() {
   const container = document.getElementById('chatbot-container');
-  container.style.display = container.style.display === 'none' || container.style.display === '' ? 'block' : 'none';
+  if (!container) return;
+  // Toggle the `show` class which controls visibility via CSS
+  container.classList.toggle('show');
 }
 
 // Chatbot simple Q&A logic

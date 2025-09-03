@@ -239,6 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeSelect = document.getElementById(document.documentElement.lang === 'ar' ? 'theme-mode' : 'theme-mode-en');
   if (langSelect) langSelect.value = savedLang;
   if (themeSelect) themeSelect.value = savedTheme;
+
+  // Apply saved theme immediately on load
+  document.documentElement.setAttribute('data-bs-theme', savedTheme);
   // contact info prefill
   const contactInfo = loadData('contactInfo', {});
   const fill = (id, value) => {

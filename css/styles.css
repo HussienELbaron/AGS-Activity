@@ -419,23 +419,45 @@ html[dir="ltr"] .chatbot-toggle {
   60% { transform: translateY(-4px); }
 }
 
-.chatbot-container {
+/*
+  Chatbot container styling. The chatbot now opens as a pop‑up window of moderate size,
+  centred near the bottom of the viewport. On smaller screens it expands to
+  nearly full width to remain readable. It remains hidden by default and is
+  toggled by adding or removing the `show` class via JavaScript.
+*/
 .chatbot-container {
   position: fixed;
-  bottom: 90px;
-  width: 320px;
+  bottom: 20%;
+  /* Centre horizontally by default */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  max-height: 500px;
   background-color: #fff;
   border: 1px solid var(--primary-color);
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   display: none;
+  overflow: hidden;
   z-index: 1050;
 }
-html[dir="rtl"] .chatbot-container {
-  left: 20px;
+/* When shown, the chatbot container appears; the show class is added via JS */
+.chatbot-container.show {
+  display: block;
 }
+@media (max-width: 768px) {
+  .chatbot-container {
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15%;
+  }
+}
+/* Centre the chatbot container horizontally for both languages. RTL and LTR share the same positioning */
+html[dir="rtl"] .chatbot-container,
 html[dir="ltr"] .chatbot-container {
-  right: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
     /* Modal styling */
@@ -605,7 +627,59 @@ html[dir='ltr'] .modal-header .btn-close {
     font-size: 0.75rem;
     padding: 0.35rem 0.6rem;
   }
+  /* Override chatbot container width on small screens to nearly full width */
   .chatbot-container {
-    width: 280px;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Reduce hero height for smaller screens */
+  .carousel-item {
+    height: 350px;
+  }
+  /* Shrink stats cards and icons */
+  .stats-card {
+    padding: 1rem;
+  }
+  .stat-icon {
+    font-size: 2rem;
+  }
+  .stats-card h4 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Additional responsiveness for very small devices */
+@media (max-width: 576px) {
+  /* Shrink logo and menu toggle further */
+  .header .brand img {
+    height: 90px;
+  }
+  .header .menu-toggle {
+    font-size: 1.4rem;
+  }
+  .header .header-actions a.btn {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
+  .carousel-item {
+    height: 300px;
+  }
+  /* Ensure search filters stack vertically on the smallest screens */
+  #search-form .col-md-4,
+  #search-form .col-md-3,
+  #search-form .col-md-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .stats-card {
+    padding: 0.75rem;
+  }
+  .stat-icon {
+    font-size: 1.8rem;
+  }
+  .stats-card h4 {
+    font-size: 1.6rem;
   }
 }
