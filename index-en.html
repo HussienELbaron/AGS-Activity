@@ -178,6 +178,150 @@
           </div>
         </div>
       </section>
+
+      <!-- Details and Registration Modals for home page (English) -->
+      <!-- Activity Details Modal -->
+      <div class="modal fade" id="activityDetailsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Activity Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="activity-details-body">
+              <!-- Details injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Trip Details Modal -->
+      <div class="modal fade" id="tripDetailsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Trip Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="trip-details-body">
+              <!-- Trip details injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Activity Registration Modal -->
+      <div class="modal fade" id="registerActivityModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Register for Activity</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <form id="activity-registration-form">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Student Name</label>
+                    <input type="text" class="form-control" name="studentName" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Grade</label>
+                    <select class="form-select" name="grade" required>
+                      <option value="4">Grade 4</option>
+                      <option value="5">Grade 5</option>
+                      <option value="6">Grade 6</option>
+                      <option value="7">Grade 7</option>
+                      <option value="8">Grade 8</option>
+                      <option value="9">Grade 9</option>
+                      <option value="10">Grade 10</option>
+                      <option value="11">Grade 11</option>
+                      <option value="12">Grade 12</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Term</label>
+                    <select class="form-select" name="term" required>
+                      <option value="1">First</option>
+                      <option value="2">Second</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Parent Name</label>
+                    <input type="text" class="form-control" name="parentName" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Phone</label>
+                    <input type="tel" class="form-control" name="phone" required />
+                  </div>
+                </div>
+                <div class="mt-4 text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Trip Registration Modal -->
+      <div class="modal fade" id="registerTripModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Register for Trip</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <form id="trip-registration-form">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Student Name</label>
+                    <input type="text" class="form-control" name="studentName" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Grade</label>
+                    <select class="form-select" name="grade" required>
+                      <option value="4">Grade 4</option>
+                      <option value="5">Grade 5</option>
+                      <option value="6">Grade 6</option>
+                      <option value="7">Grade 7</option>
+                      <option value="8">Grade 8</option>
+                      <option value="9">Grade 9</option>
+                      <option value="10">Grade 10</option>
+                      <option value="11">Grade 11</option>
+                      <option value="12">Grade 12</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Term</label>
+                    <select class="form-select" name="term" required>
+                      <option value="1">First</option>
+                      <option value="2">Second</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Parent Name</label>
+                    <input type="text" class="form-control" name="parentName" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Phone</label>
+                    <input type="tel" class="form-control" name="phone" required />
+                  </div>
+                </div>
+                <div class="mt-4 text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- Chatbot Toggle -->

@@ -178,6 +178,150 @@
           </div>
         </div>
       </section>
+
+    <!-- Details and Registration Modals for home page activities/trips -->
+    <!-- Activity Details Modal -->
+    <div class="modal fade" id="activityDetailsModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">تفاصيل النشاط</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body" id="activity-details-body">
+            <!-- سيتم حقن التفاصيل عبر JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Trip Details Modal -->
+    <div class="modal fade" id="tripDetailsModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">تفاصيل الرحلة</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body" id="trip-details-body">
+            <!-- سيتم حقن تفاصيل الرحلة -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Activity Registration Modal -->
+    <div class="modal fade" id="registerActivityModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">تسجيل فى النشاط</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="activity-registration-form">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">اسم الطالب</label>
+                  <input type="text" class="form-control" name="studentName" required />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">المرحلة</label>
+                  <select class="form-select" name="grade" required>
+                    <option value="4">الرابع الابتدائي</option>
+                    <option value="5">الخامس الابتدائي</option>
+                    <option value="6">السادس الابتدائي</option>
+                    <option value="7">الأول المتوسط</option>
+                    <option value="8">الثاني المتوسط</option>
+                    <option value="9">الثالث المتوسط</option>
+                    <option value="10">الأول الثانوي</option>
+                    <option value="11">الثاني الثانوي</option>
+                    <option value="12">الثالث الثانوي</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">الترم</label>
+                  <select class="form-select" name="term" required>
+                    <option value="1">الأول</option>
+                    <option value="2">الثاني</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">اسم ولى الأمر</label>
+                  <input type="text" class="form-control" name="parentName" required />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">البريد الإلكترونى</label>
+                  <input type="email" class="form-control" name="email" required />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">رقم الهاتف</label>
+                  <input type="tel" class="form-control" name="phone" required />
+                </div>
+              </div>
+              <div class="mt-4 text-center">
+                <button type="submit" class="btn btn-primary">إرسال</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Trip Registration Modal -->
+    <div class="modal fade" id="registerTripModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">تسجيل فى الرحلة</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="trip-registration-form">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">اسم الطالب</label>
+                  <input type="text" class="form-control" name="studentName" required />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">المرحلة</label>
+                  <select class="form-select" name="grade" required>
+                    <option value="4">الرابع الابتدائي</option>
+                    <option value="5">الخامس الابتدائي</option>
+                    <option value="6">السادس الابتدائي</option>
+                    <option value="7">الأول المتوسط</option>
+                    <option value="8">الثاني المتوسط</option>
+                    <option value="9">الثالث المتوسط</option>
+                    <option value="10">الأول الثانوي</option>
+                    <option value="11">الثاني الثانوي</option>
+                    <option value="12">الثالث الثانوي</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">الترم</label>
+                  <select class="form-select" name="term" required>
+                    <option value="1">الأول</option>
+                    <option value="2">الثاني</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">اسم ولى الأمر</label>
+                  <input type="text" class="form-control" name="parentName" required />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">البريد الإلكترونى</label>
+                  <input type="email" class="form-control" name="email" required />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">رقم الهاتف</label>
+                  <input type="tel" class="form-control" name="phone" required />
+                </div>
+              </div>
+              <div class="mt-4 text-center">
+                <button type="submit" class="btn btn-primary">إرسال</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     </main>
 
     <!-- Chatbot Toggle -->

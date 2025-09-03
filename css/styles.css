@@ -55,14 +55,16 @@ body {
     }
     /* Logo inside the header. Enlarged for greater prominence across all pages */
     .header .brand img {
-      height: 120px;
+      /* Increase the logo size to give it more prominence */
+      height: 140px;
     }
     /* Position the sidebar toggle button */
     .header .menu-toggle {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 2.5rem; /* larger toggle icon for better touch target */
+      /* Enlarge the hamburger icon a bit more for easier tapping */
+      font-size: 3rem;
       background: none;
       border: none;
       color: var(--primary-color);
@@ -113,6 +115,8 @@ body {
       border-top-left-radius: 16px;
       border-bottom-left-radius: 16px;
       box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+  /* Anchor the default (RTL) sidebar to the right side of the viewport */
+  right: 0;
     }
     html[dir='ltr'] .sidebar {
       transform: translateX(-100%);
@@ -122,6 +126,9 @@ body {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
       box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+  /* Anchor the LTR sidebar to the left instead of the right */
+  left: 0;
+  right: auto;
     }
 .sidebar.open {
   transform: translateX(0);
@@ -167,16 +174,19 @@ body {
 
 /* Content area */
 .content {
-  padding-top: 80px;
-      flex-grow: 1;
+  /* Remove the top padding so the hero carousel sits directly under the sticky header. */
+  padding-top: 0;
+  flex-grow: 1;
 }
 
 /* Hero carousel */
 .carousel-item {
-  height: 600px; /* further increase height for a more immersive hero section */
+  /* Reduce hero height slightly and ensure the slide sits flush beneath the sticky header */
+  height: 450px;
   background-size: cover;
   background-position: center;
   position: relative;
+  margin-top: 0;
 }
 .carousel-item .carousel-caption {
   background-color: rgba(0, 0, 0, 0.45);
@@ -204,6 +214,19 @@ body {
   color: #666;
 }
 
+/* Center statistics row horizontally so cards appear in the middle of the page */
+.stats-section .row {
+  justify-content: center;
+}
+
+/* Increase the size of icons and numbers for statistics to make them stand out */
+.stats-card h4 {
+  font-size: 2.5rem;
+}
+.stats-card .stat-icon {
+  font-size: 3.5rem;
+}
+
     /* Modern stats card styling */
     .stats-card {
       background-color: #fff;
@@ -211,6 +234,7 @@ body {
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
       transition: transform 0.2s, box-shadow 0.2s;
+      padding: 2rem;
     }
     .stats-card:hover {
       transform: translateY(-3px);
@@ -272,26 +296,57 @@ body {
    to give the page a more dynamic and thematic feel. We use a translucent
    primary colour so the bar blends with the page, and an icon to signal
    activity. This pattern applies to all h3 headings within these sections. */
+/* Unified section headings:
+   Each h3 heading sits on a coloured bar that spans the full width of its container.
+   The bar has a consistent height and colour across sections. Icons specific
+   to each section are inserted via ::before pseudo elements below. */
 .events-section h3,
 .carousel-section h3,
 .search-section h3,
 .stats-section h3 {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: block;
+  width: 100%;
+  text-align: center;
   padding: 0.6rem 1.2rem;
-  background-color: rgba(8, 41, 108, 0.1); /* translucent primary colour */
+  background-color: rgba(8, 41, 108, 0.1);
   border-radius: 12px;
   margin-bottom: 1.5rem;
   position: relative;
+  font-weight: 700;
 }
+/* Base icon styling for section headings */
 .events-section h3::before,
 .carousel-section h3::before,
 .search-section h3::before,
 .stats-section h3::before {
-  content: '⚽';
+  position: absolute;
+  inset-inline-start: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 1.5rem;
   color: var(--secondary-color);
+}
+/* Specific icons per section */
+.events-section h3::before {
+  content: '\1F4C5'; /* calendar */
+}
+/* First carousel on the home page: Most requested activities */
+.carousel-section:nth-of-type(1) h3::before {
+  content: '\1F525'; /* fire representing popularity */
+}
+/* Second carousel: current events */
+.carousel-section:nth-of-type(2) h3::before {
+  content: '\1F389'; /* party popper representing events */
+}
+/* Third carousel: current trips */
+.carousel-section:nth-of-type(3) h3::before {
+  content: '\1F68C'; /* bus representing trips */
+}
+.search-section h3::before {
+  content: '\1F50D'; /* magnifying glass */
+}
+.stats-section h3::before {
+  content: '\1F4CA'; /* bar chart for statistics */
 }
 
 /* Cards for activities, events, trips */
@@ -404,9 +459,14 @@ html[dir="ltr"] .chatbot-container {
       color: #fff;
       border-bottom: none;
     }
-    .modal-header .btn-close {
-      filter: invert(1);
-    }
+/* Position the close button in the top corner of the modal regardless of language direction. */
+.modal-header .btn-close {
+  position: absolute;
+  top: 0.5rem;
+  /* Use logical property so the close button sits at the end of the inline axis for both LTR and RTL */
+  inset-inline-end: 0.5rem;
+  filter: invert(1);
+}
     .modal-body {
       background-color: #fff;
     }
@@ -418,6 +478,59 @@ html[dir="ltr"] .chatbot-container {
 }
 .modal.show .modal-dialog {
   transform: translateY(0);
+}
+
+/* ------------------------------------------------------------------ */
+/* Custom button palette
+   All primary, success and danger buttons use the dark blue primary colour.
+   When hovered or activated, they turn yellow with dark-blue text. Outline
+   variants invert the colours accordingly. */
+.btn-primary,
+.btn-success,
+.btn-danger {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: #fff !important;
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+.btn-danger:hover,
+.btn-primary:active,
+.btn-success:active,
+.btn-danger:active,
+.btn-primary.active,
+.btn-success.active,
+.btn-danger.active {
+  background-color: var(--secondary-color) !important;
+  border-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+}
+
+.btn-outline-primary {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  background-color: transparent !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:active,
+.btn-outline-primary.active {
+  background-color: var(--primary-color) !important;
+  color: #fff !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-outline-secondary {
+  color: var(--primary-color) !important;
+  border-color: var(--secondary-color) !important;
+}
+.btn-outline-secondary:hover,
+.btn-outline-secondary:active,
+.btn-outline-secondary.active {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+  border-color: var(--secondary-color) !important;
 }
 .chatbot-header {
   background-color: var(--primary-color);

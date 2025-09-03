@@ -248,8 +248,10 @@ function renderStats(container) {
   ];
   stats.forEach((stat) => {
     const col = document.createElement('div');
-    // Use responsive columns: on small screens 6 columns; large screens 3 or 2
-    col.className = 'col-6 col-md-4 col-lg-2 mb-3';
+    // Use responsive columns: bigger cards with more space on larger screens
+    // On extra small screens two per row, on small screens three, on medium screens four,
+    // and on large screens five.
+    col.className = 'col-6 col-sm-4 col-md-3 col-lg-2 mb-4';
     col.innerHTML = `
       <div class="stats-card ${stat.class} d-flex flex-column align-items-center p-4 h-100">
         <div class="stat-icon mb-2" style="font-size: 2.2rem;">${stat.icon}</div>
