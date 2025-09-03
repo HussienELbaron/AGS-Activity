@@ -7,7 +7,7 @@
 */
 
 :root {
-  --primary-color: #0d6efd; /* dark blue derived from logo */
+  --primary-color: #08296c; /* dark blue derived from logo */
   --secondary-color: #f4b400; /* golden yellow derived from logo */
   --light-color: #f8f9fa; /* light background */
   --dark-text: #212529;
@@ -684,39 +684,128 @@ html[dir='ltr'] .modal-header .btn-close {
   }
 }
 
-/* === Project fixes === */
-/* Use bright bootstrap primary for buttons & headers */
-.btn, .btn-primary, .btn-outline-primary, .btn-info {
+/* === Glassmorphism & Buttons (project patch) === */
+:root{
+  --primary-color:#0d6efd; /* bright bootstrap blue */
+  --glass-bg: rgba(255,255,255,0.18);
+  --glass-border: rgba(255,255,255,0.35);
+  --glass-blur: blur(12px);
+  --yellow:#f4b400;
+  --ink:#08296c;
+}
+
+/* Generic glass panel */
+.glass, .glassy, .section-title-glass, .modal-header.glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  border-radius: 16px;
+}
+
+/* Buttons: blue glass & yellow glass */
+.btn, .btn-primary, .btn-outline-primary {
   --bs-btn-bg: var(--primary-color);
-  --bs-btn-border-color: var(--primary-color);
+  --bs-btn-color: #fff;
+  --bs-btn-border-color: transparent;
   --bs-btn-hover-bg: #0b5ed7;
-  --bs-btn-hover-border-color: #0a58ca;
+  --bs-btn-hover-border-color: transparent;
 }
-.btn-outline-primary {
-  --bs-btn-color: var(--primary-color);
-  --bs-btn-hover-color: #fff;
-  background-color: transparent;
+.btn-glass {
+  color:#fff;
+  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35));
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(13,110,253,.55);
+  box-shadow: 0 8px 20px rgba(13,110,253,.25);
 }
-.modal-header, .offcanvas-header, .dropdown-header, .accordion-button, .toast-header {
-  background-color: var(--primary-color) !important;
-  color: #fff !important;
+.btn-glass:hover { filter: brightness(1.05); }
+
+.btn-glass-yellow {
+  color: var(--ink);
+  background: linear-gradient(135deg, rgba(244,180,0,.55), rgba(244,180,0,.35));
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(244,180,0,.55);
+  box-shadow: 0 8px 20px rgba(244,180,0,.25);
 }
-/* Chatbot: open bubble beside the toggle, not centered */
+.btn-glass-yellow:hover { filter: brightness(1.05); }
+
+/* Headings (homepage) */
+.carousel-caption h2, .section-title, .home-title {
+  display:inline-block;
+  padding:.5rem 1rem;
+  color:#fff;
+  border-radius:16px;
+  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35));
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border:1px solid rgba(13,110,253,.45);
+  text-shadow: 0 1px 2px rgba(0,0,0,.3);
+}
+
+/* Modals: glass header and aligned title/close */
+.modal-header {
+  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35)) !important;
+  color:#fff !important;
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid rgba(255,255,255,.35);
+  align-items:center; /* align title & close on same baseline */
+}
+.modal-header .btn-close { filter: invert(1) grayscale(1); opacity:.9; }
+
+/* Body subtle icon background */
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background-image: url('images/pattern.svg');
+  background-size: 320px;
+  background-repeat: repeat;
+  opacity:.06; pointer-events:none; z-index:-1;
+}
+
+/* Header brand/logo responsive sizes */
+.header .brand img{ height:auto; max-height:96px; }
+@media (max-width: 992px){ .header .brand img{ max-height:72px; } }
+@media (max-width: 768px){ .header .brand img{ max-height:52px; } }
+@media (max-width: 576px){ .header .brand img{ max-height:44px; } }
+
+/* Sidebar fix (English LTR) + glass buttons */
+.sidebar, .admin-sidebar {
+  background: rgba(255,255,255,.6);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+html[dir='ltr'] .sidebar{ left:0; right:auto; transform: translateX(-100%); }
+.sidebar.open{ transform: translateX(0); }
+.sidebar .menu a,
+.admin-sidebar a{
+  text-decoration:none;
+  display:block;
+  padding:.6rem 1rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(13,110,253,.55), rgba(13,110,253,.35));
+  color:#fff;
+  border:1px solid rgba(13,110,253,.45);
+  box-shadow: 0 6px 16px rgba(13,110,253,.2);
+  text-align:center;
+  font-weight:700;
+}
+
+/* Admin sidebar safe spacing */
+.admin-sidebar{ padding-top:140px; padding-bottom:120px; }
+.admin-sidebar ul{ padding:0 1rem; }
+
+/* Chatbot: beside its icon */
+.chatbot-toggle{ z-index:1050; }
 .chatbot-container {
-  bottom: 100px !important;
-  left: auto !important;
-  transform: none !important;
-  width: 360px;
+  bottom: 100px; width: 360px;
+  left:auto; transform:none;
 }
-html[dir="ltr"] .chatbot-container { right: 100px !important; }
-html[dir="rtl"] .chatbot-container { left: 100px !important; }
-/* Mobile header logo sizing to avoid overlap */
-.header .brand img { max-height: 56px; height: auto; }
-@media (max-width: 576px) {
-  .header { padding-left: 56px; padding-right: 56px; }
-  .header .brand img { max-height: 44px; }
-}
-/* Dashboard: leave safe space under fixed header */
-.admin-content, .admin-section, main {
-  padding-top: 120px !important;
-}
+html[dir='ltr'] .chatbot-container{ right:100px; }
+html[dir='rtl'] .chatbot-container{ left:100px; }
+
+/* Fix tiny typos from older CSS */
+.sidebar .menu a{ border-radius:12px; }
