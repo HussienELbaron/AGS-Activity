@@ -7,7 +7,7 @@
 */
 
 :root {
-  --primary-color: #08296c; /* dark blue derived from logo */
+  --primary-color: #0d6efd; /* dark blue derived from logo */
   --secondary-color: #f4b400; /* golden yellow derived from logo */
   --light-color: #f8f9fa; /* light background */
   --dark-text: #212529;
@@ -129,7 +129,7 @@ body {
       box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
   /* Anchor the LTR sidebar to the left instead of the right */
   left: 0;
-  right: auto;
+  right: autouto;
     }
 .sidebar.open {
   transform: translateX(0);
@@ -147,7 +147,7 @@ body {
   color: var(--dark-text);
   display: block;
   padding: 0.5rem 0.75rem;
-  border-radius: 4px;
+  border-radius: 4pxx;
   transition: background-color 0.2s;
 }
 .sidebar .menu a:hover {
@@ -497,7 +497,7 @@ html[dir="ltr"] .chatbot-container {
    close button is separated from it. */
 html[dir='rtl'] .modal-header .btn-close {
   left: 0.5rem !important;
-  right: auto !important;
+  right: autouto !important;
 }
 html[dir='ltr'] .modal-header .btn-close {
   right: 0.5rem !important;
@@ -682,4 +682,41 @@ html[dir='ltr'] .modal-header .btn-close {
   .stats-card h4 {
     font-size: 1.6rem;
   }
+}
+
+/* === Project fixes === */
+/* Use bright bootstrap primary for buttons & headers */
+.btn, .btn-primary, .btn-outline-primary, .btn-info {
+  --bs-btn-bg: var(--primary-color);
+  --bs-btn-border-color: var(--primary-color);
+  --bs-btn-hover-bg: #0b5ed7;
+  --bs-btn-hover-border-color: #0a58ca;
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--primary-color);
+  --bs-btn-hover-color: #fff;
+  background-color: transparent;
+}
+.modal-header, .offcanvas-header, .dropdown-header, .accordion-button, .toast-header {
+  background-color: var(--primary-color) !important;
+  color: #fff !important;
+}
+/* Chatbot: open bubble beside the toggle, not centered */
+.chatbot-container {
+  bottom: 100px !important;
+  left: auto !important;
+  transform: none !important;
+  width: 360px;
+}
+html[dir="ltr"] .chatbot-container { right: 100px !important; }
+html[dir="rtl"] .chatbot-container { left: 100px !important; }
+/* Mobile header logo sizing to avoid overlap */
+.header .brand img { max-height: 56px; height: auto; }
+@media (max-width: 576px) {
+  .header { padding-left: 56px; padding-right: 56px; }
+  .header .brand img { max-height: 44px; }
+}
+/* Dashboard: leave safe space under fixed header */
+.admin-content, .admin-section, main {
+  padding-top: 120px !important;
 }
