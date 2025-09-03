@@ -87,6 +87,34 @@ const sampleActivities = [
     image: 'images/hero-bg.jpg',
     price: 30
   }
+  ,{
+    id: 4,
+    type: 'paid',
+    title_ar: 'نشاط السباحة',
+    title_en: 'Swimming Activity',
+    description_ar: 'تعلم مهارات السباحة.',
+    description_en: 'Learn swimming skills.',
+    image: 'images/hero-bg.jpg',
+    price: 60
+  },{
+    id: 5,
+    type: 'free',
+    title_ar: 'نشاط المسرح',
+    title_en: 'Theatre Activity',
+    description_ar: 'ورشة للتمثيل المسرحى.',
+    description_en: 'Theatre acting workshop.',
+    image: 'images/hero-bg.jpg',
+    price: 0
+  },{
+    id: 6,
+    type: 'trip',
+    title_ar: 'رحلة إلى الحديقة',
+    title_en: 'Park Trip',
+    description_ar: 'نزهة إلى الحديقة.',
+    description_en: 'Picnic at the park.',
+    image: 'images/hero-bg.jpg',
+    price: 20
+  }
 ];
 
 const sampleGallery = [
@@ -106,6 +134,15 @@ const sampleGallery = [
         src: 'images/hero-bg.jpg',
         title_ar: 'رحلة إلى المتحف',
         title_en: 'Museum Trip',
+        images: ['images/hero-bg.jpg', 'images/hero-bg.jpg']
+      },
+      {
+        id: 3,
+        type: 'talent',
+        time: 'recent',
+        src: 'images/hero-bg.jpg',
+        title_ar: 'موهبة الرسم',
+        title_en: 'Drawing Talent',
         images: ['images/hero-bg.jpg', 'images/hero-bg.jpg']
       }
     ];
@@ -141,6 +178,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('gallery-grid')) {
     renderGallery();
   }
+  // Talents page
+  if (document.getElementById('talent-grid')) {
+    renderTalents();
+  }
   // Render hero slides
   renderHeroSlides();
   // Search functionality
@@ -166,34 +207,54 @@ document.addEventListener('DOMContentLoaded', () => {
 // Render statistics (dummy numbers)
 function renderStats(container) {
   container.innerHTML = '';
+  // Extended statistics with colourful styles and icons. Each object defines
+  // Arabic/English labels, a numeric value, an emoji icon and a colour class.
   const stats = [
     {
       label_ar: 'المشتركين',
       label_en: 'Subscribers',
       value: 120,
-      icon: '👥'
+      icon: '👥',
+      class: 'blue'
     },
     {
       label_ar: 'الأنشطة',
       label_en: 'Activities',
       value: 8,
-      icon: '🏀'
+      icon: '🏀',
+      class: 'yellow'
     },
     {
       label_ar: 'الرحلات',
       label_en: 'Trips',
       value: 3,
-      icon: '🚌'
+      icon: '🚌',
+      class: 'green'
+    },
+    {
+      label_ar: 'الفعاليات',
+      label_en: 'Events',
+      value: 5,
+      icon: '🎉',
+      class: 'orange'
+    },
+    {
+      label_ar: 'الموهوبين',
+      label_en: 'Talents',
+      value: 4,
+      icon: '🌟',
+      class: 'pink'
     }
   ];
   stats.forEach((stat) => {
     const col = document.createElement('div');
-    col.className = 'col-md-4 mb-3';
+    // Use responsive columns: on small screens 6 columns; large screens 3 or 2
+    col.className = 'col-6 col-md-4 col-lg-2 mb-3';
     col.innerHTML = `
-      <div class="card stats-card d-flex flex-column align-items-center p-4">
-        <div class="stat-icon mb-2" style="font-size: 2rem;">\${stat.icon}</div>
-        <h4 class="mb-1">\${stat.value}</h4>
-        <p class="mb-0">\${document.documentElement.lang === 'ar' ? stat.label_ar : stat.label_en}</p>
+      <div class="stats-card ${stat.class} d-flex flex-column align-items-center p-4 h-100">
+        <div class="stat-icon mb-2" style="font-size: 2.2rem;">${stat.icon}</div>
+        <h4 class="mb-1">${stat.value}</h4>
+        <p class="mb-0">${document.documentElement.lang === 'ar' ? stat.label_ar : stat.label_en}</p>
       </div>
     `;
     container.appendChild(col);
@@ -339,15 +400,46 @@ function renderGallery() {
     col.dataset.type = album.type;
     col.dataset.time = album.time;
     const title = document.documentElement.lang === 'ar' ? album.title_ar : album.title_en;
-    const typeLabel = document.documentElement.lang === 'ar'
-      ? (album.type === 'activity' ? 'نشاط' : 'رحلة')
-      : (album.type === 'activity' ? 'Activity' : 'Trip');
+    let typeLabel;
+    if (document.documentElement.lang === 'ar') {
+      if (album.type === 'activity') typeLabel = 'نشاط';
+      else if (album.type === 'trip') typeLabel = 'رحلة';
+      else typeLabel = 'موهوب';
+    } else {
+      if (album.type === 'activity') typeLabel = 'Activity';
+      else if (album.type === 'trip') typeLabel = 'Trip';
+      else typeLabel = 'Talent';
+    }
     col.innerHTML = `
       <div class="card gallery-card h-100" onclick="openGalleryAlbum(${album.id})" style="cursor:pointer;">
         <img src="${album.src}" alt="${title}" class="card-img-top" />
         <div class="card-body text-center">
           <h6 class="card-title mb-1">${title}</h6>
           <small class="text-muted">${typeLabel}</small>
+        </div>
+      </div>
+    `;
+    grid.appendChild(col);
+  });
+}
+
+// Render talents grid on the talents page. Uses the same sampleGallery data to
+// display only albums of type 'talent'. Each item is shown as a card with
+// a click handler to open the album in a modal carousel.
+function renderTalents() {
+  const grid = document.getElementById('talent-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  const talents = sampleGallery.filter((album) => album.type === 'talent');
+  talents.forEach((album) => {
+    const col = document.createElement('div');
+    col.className = 'col-md-4';
+    const title = document.documentElement.lang === 'ar' ? album.title_ar : album.title_en;
+    col.innerHTML = `
+      <div class="card gallery-card h-100" onclick="openGalleryAlbum(${album.id})" style="cursor:pointer;">
+        <img src="${album.src}" alt="${title}" class="card-img-top" />
+        <div class="card-body text-center">
+          <h6 class="card-title mb-1">${title}</h6>
         </div>
       </div>
     `;

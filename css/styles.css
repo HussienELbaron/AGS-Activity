@@ -24,6 +24,14 @@ body {
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+
+  /* add a subtle sports-inspired pattern to all pages. The pattern.svg file contains
+     lightly colored geometric shapes (circles, squares and triangles) that evoke
+     sporting activities. We tile it across the page at a modest size so it
+     remains discreet and doesn’t distract from the content. */
+  background-image: url('../images/pattern.svg');
+  background-repeat: repeat;
+  background-size: 320px;
 }
 
 /* Header */
@@ -35,25 +43,26 @@ body {
       top: 0;
       z-index: 1020;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-      /* Center the brand and use absolute positioning for menu and action buttons */
       display: flex;
       align-items: center;
-      justify-content: center;
+      /* Force centring even if Bootstrap utility classes are present */
+      justify-content: center !important;
       position: relative;
     }
     .header .brand {
       flex-grow: 1;
       text-align: center;
     }
+    /* Logo inside the header. Enlarged for greater prominence across all pages */
     .header .brand img {
-      height: 80px; /* enlarged logo */
+      height: 120px;
     }
     /* Position the sidebar toggle button */
     .header .menu-toggle {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 1.5rem;
+      font-size: 2.5rem; /* larger toggle icon for better touch target */
       background: none;
       border: none;
       color: var(--primary-color);
@@ -84,6 +93,9 @@ body {
     .header .header-actions .btn {
       font-size: 0.9rem;
     }
+
+/* Removed special .home rules. The header now centres the brand on all pages
+   by default. See the .header rules at the top of this file. */
 
 /* Sidebar */
     .sidebar {
@@ -161,7 +173,7 @@ body {
 
 /* Hero carousel */
 .carousel-item {
-  height: 400px;
+  height: 600px; /* further increase height for a more immersive hero section */
   background-size: cover;
   background-position: center;
   position: relative;
@@ -209,11 +221,77 @@ body {
       color: var(--secondary-color);
     }
 
+/* Colorful statistic cards. Each variant applies a pastel background color and
+   matching icon colour to differentiate between statistics such as
+   subscribers, activities, trips, events and talents. */
+.stats-card.blue {
+  background-color: #e5f0ff;
+  color: var(--primary-color);
+}
+.stats-card.blue .stat-icon {
+  color: #0d6efd; /* bootstrap primary blue */
+}
+.stats-card.yellow {
+  background-color: #fff9e6;
+  color: #b88c00;
+}
+.stats-card.yellow .stat-icon {
+  color: #ffc107;
+}
+.stats-card.pink {
+  background-color: #ffeef5;
+  color: #c83b6e;
+}
+.stats-card.pink .stat-icon {
+  color: #e83e8c;
+}
+.stats-card.green {
+  background-color: #e8f7ed;
+  color: #127457;
+}
+.stats-card.green .stat-icon {
+  color: #28a745;
+}
+.stats-card.orange {
+  background-color: #fff4e6;
+  color: #cc6600;
+}
+.stats-card.orange .stat-icon {
+  color: #fd7e14;
+}
+
 /* Section headings */
+/* Default colour for headings */
 .events-section h3,
 .carousel-section h3,
 .search-section h3 {
   color: var(--primary-color);
+}
+
+/* Enhanced section headings: headings are wrapped in a coloured bar with a sports icon
+   to give the page a more dynamic and thematic feel. We use a translucent
+   primary colour so the bar blends with the page, and an icon to signal
+   activity. This pattern applies to all h3 headings within these sections. */
+.events-section h3,
+.carousel-section h3,
+.search-section h3,
+.stats-section h3 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: rgba(8, 41, 108, 0.1); /* translucent primary colour */
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.events-section h3::before,
+.carousel-section h3::before,
+.search-section h3::before,
+.stats-section h3::before {
+  content: '⚽';
+  font-size: 1.5rem;
+  color: var(--secondary-color);
 }
 
 /* Cards for activities, events, trips */
@@ -251,41 +329,64 @@ body {
 }
 
 /* Chatbot */
+/* Chatbot toggle button. It sits at the bottom of the viewport and animates gently
+   to attract the user’s attention. On Arabic pages it appears on the left and
+   on English pages it appears on the right. */
 .chatbot-toggle {
   position: fixed;
   bottom: 20px;
-  right: 20px;
   z-index: 1050;
   background-color: var(--primary-color);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: bounce 2s infinite;
 }
+html[dir="rtl"] .chatbot-toggle {
+  left: 20px;
+}
+html[dir="ltr"] .chatbot-toggle {
+  right: 20px;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+.chatbot-container {
 .chatbot-container {
   position: fixed;
-  bottom: 80px;
-  right: 20px;
+  bottom: 90px;
   width: 320px;
   background-color: #fff;
   border: 1px solid var(--primary-color);
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   display: none;
   z-index: 1050;
+}
+html[dir="rtl"] .chatbot-container {
+  left: 20px;
+}
+html[dir="ltr"] .chatbot-container {
+  right: 20px;
 }
 
     /* Modal styling */
     .modal-content {
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
     }
 
     /* Auth pages */
@@ -309,6 +410,15 @@ body {
     .modal-body {
       background-color: #fff;
     }
+
+/* Smooth modal entrance animation */
+.modal.fade .modal-dialog {
+  transform: translateY(-20px);
+  transition: transform 0.3s ease-out;
+}
+.modal.show .modal-dialog {
+  transform: translateY(0);
+}
 .chatbot-header {
   background-color: var(--primary-color);
   color: #fff;

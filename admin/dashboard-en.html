@@ -100,18 +100,18 @@
             </select>
           </div>
           <div class="col-12 text-end mt-3">
-            <button class="btn btn-primary">Save Settings</button>
+            <button id="save-settings-en" class="btn btn-primary">Save Settings</button>
           </div>
         </div>
       </section>
       <section id="subscribers" class="admin-section">
         <h3>Subscribers</h3>
-        <button class="btn btn-success mb-3" onclick="addSubscriber()">Add Subscriber</button>
+        <button class="btn btn-success mb-3" onclick="showSubscriberModal()">Add Subscriber</button>
         <div id="subscribers-list-en" class="table-responsive"></div>
       </section>
       <section id="admins" class="admin-section">
         <h3>Admins</h3>
-        <button class="btn btn-success mb-3" onclick="addAdmin()">Add Admin</button>
+        <button class="btn btn-success mb-3" onclick="showAdminModal()">Add Admin</button>
         <div id="admins-list-en" class="table-responsive"></div>
       </section>
       <section id="email-templates" class="admin-section">
@@ -123,27 +123,27 @@
       </section>
       <section id="slider" class="admin-section">
         <h3>Home Slider</h3>
-        <button class="btn btn-success mb-3" onclick="addSlide()">Add Slide</button>
+        <button class="btn btn-success mb-3" onclick="showSlideModal()">Add Slide</button>
         <div id="slider-list-en" class="row g-3"></div>
       </section>
       <section id="paid-activities" class="admin-section">
         <h3>Paid Activities</h3>
-        <button class="btn btn-success mb-3" onclick="addPaidActivity()">Add Activity</button>
+        <button class="btn btn-success mb-3" onclick="showActivityModal('paid')">Add Activity</button>
         <div id="paid-activities-table-en" class="table-responsive"></div>
       </section>
       <section id="free-activities" class="admin-section">
         <h3>Free Activities</h3>
-        <button class="btn btn-success mb-3" onclick="addFreeActivity()">Add Activity</button>
+        <button class="btn btn-success mb-3" onclick="showActivityModal('free')">Add Activity</button>
         <div id="free-activities-table-en" class="table-responsive"></div>
       </section>
       <section id="trips" class="admin-section">
         <h3>Trips</h3>
-        <button class="btn btn-success mb-3" onclick="addTrip()">Add Trip</button>
+        <button class="btn btn-success mb-3" onclick="showActivityModal('trip')">Add Trip</button>
         <div id="trips-table-en" class="table-responsive"></div>
       </section>
       <section id="gallery" class="admin-section">
         <h3>Gallery</h3>
-        <button class="btn btn-success mb-3" onclick="addGalleryImage()">Add Image</button>
+        <button class="btn btn-success mb-3" onclick="showAlbumModal()">Add Album</button>
         <div id="gallery-table-en" class="table-responsive"></div>
       </section>
       <section id="calendar" class="admin-section">
@@ -164,20 +164,42 @@
       </section>
       <section id="contact-info" class="admin-section">
         <h3>Contact Info</h3>
-        <div class="mb-3">
-          <label class="form-label">Address</label>
-          <input type="text" class="form-control" id="contact-address-en" />
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" id="contact-address-en" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="contact-phone-en" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" id="contact-email-en" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Instagram Link</label>
+            <input type="url" class="form-control" id="contact-instagram-en" placeholder="https://instagram.com/" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Facebook Link</label>
+            <input type="url" class="form-control" id="contact-facebook-en" placeholder="https://facebook.com/" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">X Link</label>
+            <input type="url" class="form-control" id="contact-x-en" placeholder="https://x.com/" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">YouTube Link</label>
+            <input type="url" class="form-control" id="contact-youtube-en" placeholder="https://youtube.com/" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">TikTok Link</label>
+            <input type="url" class="form-control" id="contact-tiktok-en" placeholder="https://tiktok.com/" />
+          </div>
         </div>
-        <div class="mb-3">
-          <label class="form-label">Phone</label>
-          <input type="tel" class="form-control" id="contact-phone-en" />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-control" id="contact-email-en" />
-        </div>
-        <div class="text-end">
-          <button class="btn btn-primary">Save</button>
+        <div class="text-end mt-3">
+          <button id="save-contact-en" class="btn btn-primary">Save</button>
         </div>
       </section>
       <section id="chatbot-training" class="admin-section">
@@ -198,6 +220,205 @@
         </form>
         <div id="chatbot-training-list-en" class="mt-3"></div>
       </section>
+      <!-- Modals for Admin Actions (English) -->
+      <!-- Add Subscriber Modal -->
+      <div class="modal fade" id="subscriberModal" tabindex="-1" aria-labelledby="subscriberModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="subscriberModalLabel">Add Subscriber</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="subscriber-form">
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-control" name="name" required />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" name="email" required />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Phone</label>
+                  <input type="tel" class="form-control" name="phone" />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Admin Modal -->
+      <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="adminModalLabel">Add Admin</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="admin-form">
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label class="form-label">Username</label>
+                  <input type="text" class="form-control" name="username" required />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Password</label>
+                  <input type="password" class="form-control" name="password" required />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Slide Modal -->
+      <div class="modal fade" id="slideModal" tabindex="-1" aria-labelledby="slideModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="slideModalLabel">Add Slider Slide</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="slide-form">
+              <div class="modal-body">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Slide Title (Arabic)</label>
+                    <input type="text" class="form-control" name="title_ar" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Slide Title (English)</label>
+                    <input type="text" class="form-control" name="title_en" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Slide Text (Arabic)</label>
+                    <input type="text" class="form-control" name="text_ar" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Slide Text (English)</label>
+                    <input type="text" class="form-control" name="text_en" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Slide Image</label>
+                    <input type="file" class="form-control" name="image" accept="image/*" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Display Date</label>
+                    <input type="date" class="form-control" name="date" />
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Activity/Trip/Talent Modal -->
+      <div class="modal fade" id="activityModal" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="activityModalLabel">Add Item</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="activity-form">
+              <input type="hidden" name="type" id="activity-type" />
+              <div class="modal-body">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Name (Arabic)</label>
+                    <input type="text" class="form-control" name="title_ar" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Name (English)</label>
+                    <input type="text" class="form-control" name="title_en" required />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Details (Arabic)</label>
+                    <textarea class="form-control" name="description_ar" required></textarea>
+                  </div>
+                    <div class="col-12">
+                    <label class="form-label">Details (English)</label>
+                    <textarea class="form-control" name="description_en" required></textarea>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Image</label>
+                    <input type="file" class="form-control" name="image" accept="image/*" required />
+                  </div>
+                  <div class="col-md-6" id="price-group">
+                    <label class="form-label">Price (SAR)</label>
+                    <input type="number" class="form-control" name="price" min="0" step="0.01" />
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Gallery Album Modal -->
+      <div class="modal fade" id="albumModal" tabindex="-1" aria-labelledby="albumModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="albumModalLabel">Add Album</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="album-form">
+              <div class="modal-body">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Album Title (Arabic)</label>
+                    <input type="text" class="form-control" name="title_ar" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Album Title (English)</label>
+                    <input type="text" class="form-control" name="title_en" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Date</label>
+                    <input type="date" class="form-control" name="date" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Type</label>
+                    <select class="form-select" name="type" required>
+                      <option value="activity">Activity</option>
+                      <option value="trip">Trip</option>
+                      <option value="talent">Talent</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Images</label>
+                    <input type="file" class="form-control" name="images" accept="image/*" multiple required />
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/admin.js"></script>
@@ -206,7 +427,15 @@
         event.preventDefault();
         document.querySelectorAll('.admin-sidebar a').forEach((link) => link.classList.remove('active'));
         event.target.classList.add('active');
-        const target = document.querySelector(event.target.getAttribute('href'));
+        const targetSelector = event.target.getAttribute('href');
+        const target = document.querySelector(targetSelector);
+        document.querySelectorAll('.admin-section').forEach((sec) => {
+          if (sec.id === targetSelector.substring(1)) {
+            sec.style.display = 'block';
+          } else {
+            sec.style.display = 'none';
+          }
+        });
         if (target) {
           window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
         }
@@ -219,6 +448,13 @@
           window.location.href = 'dashboard-en.html';
         }
       }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('.admin-section');
+        sections.forEach((sec, idx) => {
+          sec.style.display = idx === 0 ? 'block' : 'none';
+        });
+      });
     </script>
   </body>
 </html>

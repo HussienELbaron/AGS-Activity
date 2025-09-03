@@ -1,0 +1,11 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background color set to transparent -->
+  <rect width="200" height="200" fill="rgba(255,255,255,0)" />
+  <!-- Simple repeating pattern of shapes to evoke sports elements -->
+  <circle cx="30" cy="30" r="6" fill="#e0eaf5" />
+  <rect x="70" y="50" width="8" height="8" rx="2" fill="#fce7b8" />
+  <polygon points="120,80 128,90 112,90" fill="#fde2e9" />
+  <circle cx="170" cy="120" r="6" fill="#d1ecd6" />
+  <rect x="40" y="140" width="8" height="8" rx="2" fill="#fde2e9" />
+  <polygon points="100,160 108,170 92,170" fill="#fce7b8" />
+</svg>
