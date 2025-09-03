@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bodyInputEn = document.getElementById('email-template-en');
     if (bodyInputEn) bodyInputEn.value = emailTemplate.body || '';
   }
-  // Save settings handler
+  // Save settings handler: persist language and theme and refresh to apply changes
   const settingsBtn = document.getElementById(document.documentElement.lang === 'ar' ? 'save-settings' : 'save-settings-en');
   if (settingsBtn) {
     settingsBtn.addEventListener('click', () => {
@@ -284,28 +284,74 @@ document.addEventListener('DOMContentLoaded', () => {
       saveData('defaultLanguage', languageVal);
       saveData('themeMode', themeVal);
       alert(document.documentElement.lang === 'ar' ? 'تم حفظ الإعدادات' : 'Settings saved');
+      // Reload the page so the new language/theme takes effect across the dashboard
+      location.reload();
     });
   }
-  // Save email handler
+  // Save email handler (Arabic): supports multiple image attachments
   const emailBtn = document.getElementById('save-email');
   if (emailBtn) {
     emailBtn.addEventListener('click', () => {
       const subject = document.getElementById('email-subject').value;
       const body = document.getElementById('email-template').value;
       const fileInput = document.getElementById('email-logo');
-      const file = fileInput && fileInput.files && fileInput.files[0];
-      const saveTemplate = (logoData) => {
-        saveData('emailTemplate', { subject, body, logo: logoData });
+      const files = fileInput && fileInput.files ? Array.from(fileInput.files) : [];
+      // Function to save once all images are processed
+      const saveTemplate = (logos) => {
+        saveData('emailTemplate', { subject, body, logos });
         alert(document.documentElement.lang === 'ar' ? 'تم حفظ القالب' : 'Email template saved');
       };
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          saveTemplate(ev.target.result);
-        };
-        reader.readAsDataURL(file);
+      if (files.length > 0) {
+        const logos = [];
+        let processed = 0;
+        files.forEach((file) => {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            logos.push(ev.target.result);
+            processed++;
+            if (processed === files.length) {
+              saveTemplate(logos);
+            }
+          };
+          reader.readAsDataURL(file);
+        });
       } else {
-        saveTemplate(emailTemplate.logo || null);
+        // If no new files selected, preserve existing logos if present
+        const existing = loadData('emailTemplate', {}).logos || [];
+        saveTemplate(existing);
+      }
+    });
+  }
+  // Save email handler (English): supports multiple image attachments
+  const emailBtnEn = document.getElementById('save-email-en');
+  if (emailBtnEn) {
+    emailBtnEn.addEventListener('click', () => {
+      const subject = document.getElementById('email-subject-en').value;
+      const body = document.getElementById('email-template-en').value;
+      const fileInput = document.getElementById('email-logos-en');
+      const files = fileInput && fileInput.files ? Array.from(fileInput.files) : [];
+      const saveTemplateEn = (logos) => {
+        // Save under same key to share between languages
+        saveData('emailTemplate', { subject, body, logos });
+        alert('Email template saved');
+      };
+      if (files.length > 0) {
+        const logos = [];
+        let processed = 0;
+        files.forEach((file) => {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            logos.push(ev.target.result);
+            processed++;
+            if (processed === files.length) {
+              saveTemplateEn(logos);
+            }
+          };
+          reader.readAsDataURL(file);
+        });
+      } else {
+        const existing = loadData('emailTemplate', {}).logos || [];
+        saveTemplateEn(existing);
       }
     });
   }

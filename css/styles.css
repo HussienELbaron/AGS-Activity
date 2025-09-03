@@ -64,7 +64,8 @@ body {
       top: 50%;
       transform: translateY(-50%);
       /* Enlarge the hamburger icon a bit more for easier tapping */
-      font-size: 3rem;
+      /* Reduce the toggle size slightly so it doesn’t dominate the header */
+      font-size: 2rem;
       background: none;
       border: none;
       color: var(--primary-color);
@@ -463,9 +464,22 @@ html[dir="ltr"] .chatbot-container {
 .modal-header .btn-close {
   position: absolute;
   top: 0.5rem;
-  /* Use logical property so the close button sits at the end of the inline axis for both LTR and RTL */
+  /* Default placement uses logical end; but we override per language below */
   inset-inline-end: 0.5rem;
   filter: invert(1);
+}
+
+/* Reposition modal close button so it sits in the top corner rather than beside the title.
+   In RTL (Arabic) pages the button should appear on the left; in LTR (English) pages it
+   should appear on the right. These overrides ensure the title remains centred and the
+   close button is separated from it. */
+html[dir='rtl'] .modal-header .btn-close {
+  left: 0.5rem !important;
+  right: auto !important;
+}
+html[dir='ltr'] .modal-header .btn-close {
+  right: 0.5rem !important;
+  left: auto !important;
 }
     .modal-body {
       background-color: #fff;
