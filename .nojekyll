@@ -1,5 +1,1 @@
-/*
-  This file tells GitHub Pages not to perform Jekyll processing on the site.
-  Without this file, strings like ${stat.icon} may be incorrectly interpreted
-  as Liquid tags and break the HTML.  Leave this file empty.
-*/
+
